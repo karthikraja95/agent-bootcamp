@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -27,6 +27,7 @@ dependencies = [
     { name = "pydantic" },
     { name = "pydantic-ai-slim", extra = ["logfire"] },
     { name = "pytest-asyncio" },
+    { name = "python-dotenv" },
     { name = "scikit-learn" },
     { name = "weaviate-client" },
 ]
@@ -83,6 +84,7 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11.7" },
     { name = "pydantic-ai-slim", extras = ["logfire"], specifier = ">=0.3.7" },
     { name = "pytest-asyncio", specifier = ">=0.25.2" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
     { name = "scikit-learn", specifier = ">=1.7.0" },
     { name = "weaviate-client", specifier = ">=4.15.4" },
 ]
