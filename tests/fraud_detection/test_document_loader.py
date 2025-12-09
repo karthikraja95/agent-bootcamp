@@ -70,8 +70,10 @@ class TestDocumentLoader:
         assert report.financial_summary.total_deposits == 45800.00
         assert report.financial_summary.total_non_crypto_spend == 25950.00
         assert report.financial_summary.total_crypto_buys == 3000.00
-        assert "BTC" in report.financial_summary.net_crypto_holdings
-        assert abs(report.financial_summary.net_crypto_holdings["BTC"] - 0.052) < 0.001
+        # Check crypto holdings
+        assert len(report.financial_summary.net_crypto_holdings) == 1
+        btc_holding = next(h for h in report.financial_summary.net_crypto_holdings if h.asset == "BTC")
+        assert abs(btc_holding.quantity - 0.052) < 0.001
 
     def test_load_case_03_fraud_structuring(self):
         """Test loading case 03: Maya Singh (fraud - structuring)."""
@@ -96,11 +98,14 @@ class TestDocumentLoader:
         assert "ADA" in crypto_assets
 
         # Verify net crypto holdings
-        assert "BTC" in report.financial_summary.net_crypto_holdings
-        assert "ETH" in report.financial_summary.net_crypto_holdings
-        assert "ADA" in report.financial_summary.net_crypto_holdings
+        assert len(report.financial_summary.net_crypto_holdings) == 3
+        crypto_assets = {h.asset for h in report.financial_summary.net_crypto_holdings}
+        assert "BTC" in crypto_assets
+        assert "ETH" in crypto_assets
+        assert "ADA" in crypto_assets
         # BTC: +0.12 - 0.02 = 0.10
-        assert abs(report.financial_summary.net_crypto_holdings["BTC"] - 0.10) < 0.001
+        btc_holding = next(h for h in report.financial_summary.net_crypto_holdings if h.asset == "BTC")
+        assert abs(btc_holding.quantity - 0.10) < 0.001
 
     def test_file_not_found(self):
         """Test error handling for non-existent file."""
@@ -144,7 +149,8 @@ class TestDocumentLoader:
         assert abs(report.financial_summary.total_crypto_buys - 3000.00) < 0.01
 
         # Net Crypto Holdings: 0.018 + 0.017 + 0.017 = 0.052 BTC
-        assert abs(report.financial_summary.net_crypto_holdings["BTC"] - 0.052) < 0.001
+        btc_holding = next(h for h in report.financial_summary.net_crypto_holdings if h.asset == "BTC")
+        assert abs(btc_holding.quantity - 0.052) < 0.001
 
     def test_negative_amounts_parsed_correctly(self):
         """Test that negative amounts (outflows) are parsed correctly."""

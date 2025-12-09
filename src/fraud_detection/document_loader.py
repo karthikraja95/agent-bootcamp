@@ -6,7 +6,7 @@ This module parses structured .txt customer reports into CustomerReport objects.
 import re
 from pathlib import Path
 
-from .models import CustomerProfile, CustomerReport, FinancialSummary, Transaction
+from .models import CryptoHolding, CustomerProfile, CustomerReport, FinancialSummary, Transaction
 
 
 def load_customer_report(file_path: str | Path) -> CustomerReport:
@@ -165,12 +165,18 @@ def _parse_financial_summary(content: str, transactions: list[Transaction]) -> F
     total_crypto_buys = abs(sum(t.fiat_amount for t in transactions if t.fiat_amount < 0 and t.crypto_asset))
 
     # Calculate net crypto holdings
-    net_crypto_holdings: dict[str, float] = {}
+    crypto_holdings_dict: dict[str, float] = {}
     for t in transactions:
         if t.crypto_asset and t.crypto_qty:
-            if t.crypto_asset not in net_crypto_holdings:
-                net_crypto_holdings[t.crypto_asset] = 0.0
-            net_crypto_holdings[t.crypto_asset] += t.crypto_qty
+            if t.crypto_asset not in crypto_holdings_dict:
+                crypto_holdings_dict[t.crypto_asset] = 0.0
+            crypto_holdings_dict[t.crypto_asset] += t.crypto_qty
+
+    # Convert to list of CryptoHolding objects
+    net_crypto_holdings = [
+        CryptoHolding(asset=asset, quantity=qty)
+        for asset, qty in crypto_holdings_dict.items()
+    ]
 
     return FinancialSummary(
         total_deposits=total_deposits,

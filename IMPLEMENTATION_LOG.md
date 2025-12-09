@@ -145,8 +145,9 @@ tests/fraud_detection/
 | ------------------------ | -------------- | ------------------- |
 | Phase 1: Data Models     | ✅ Complete    | 19/19 passing       |
 | Phase 2: Document Loader | ✅ Complete    | 10/10 passing       |
-| Phase 3: Agent Prompts   | ✅ Complete    | 5/5 passing + 1 API |
-| **Total**                | **3/8 Phases** | **34/34 passing**   |
+| Phase 3: Agent Prompts   | ✅ Complete    | 5/5 + 3 API passing |
+| Phase 4: Intake Agent    | ✅ Complete    | 2/2 + 2 API passing |
+| **Total**                | **4/8 Phases** | **41/41 passing**   |
 
 ---
 
@@ -251,19 +252,162 @@ tests/fraud_detection/
 └── test_prompts_integration.py  # Integration tests (327 lines, 5 tests + 3 API tests)
 ```
 
-### Next Steps (Phase 4)
+---
 
-According to the plan, the next step is:
+## Phase 4: Intake Agent ✅ COMPLETE
 
-**Step 4-7 / Phase 4: Intake Agent**
+**Date**: 2025-12-09
+**Status**: ✅ All tests passing (2 unit + 2 API integration)
 
-- Create `src/fraud_detection/agents/intake.py`
-- Implement Intake Agent that:
-  - Takes a CustomerReport as input
-  - Extracts ExtractedSignal objects
-  - Returns structured output
-- Use `output_type` for structured responses
-- Write tests with real customer reports
+### What Was Implemented
+
+#### 1. Intake Agent (`src/fraud_detection/agents/intake.py`)
+
+**Core Components**:
+
+1. **IntakeOutput Model** - Structured output containing:
+
+   - `customer_report`: Full CustomerReport with all parsed data
+   - `signals`: List of ExtractedSignal objects (positive/neutral/negative indicators)
+   - `risk_areas_to_investigate`: Suggested areas for further investigation
+
+2. **create_intake_agent()** - Factory function to create the agent with:
+
+   - INTAKE_AGENT_INSTRUCTIONS from prompts.py
+   - Structured output using `output_type=IntakeOutput`
+   - Model: `gemini-2.5-flash` (fast, cost-effective)
+
+3. **run_intake_agent()** - Helper function to run the agent on a CustomerReport
+
+**Key Features**:
+
+- ✅ Pure LLM-based signal extraction (no external tools)
+- ✅ Structured output with Pydantic validation
+- ✅ Extracts both positive and negative signals
+- ✅ Identifies specific risk areas for investigation
+- ✅ Works with real customer reports from test data
+
+#### 2. Model Updates
+
+**Fixed Strict JSON Schema Issue**:
+
+Changed `net_crypto_holdings` from `dict[str, float]` to `list[CryptoHolding]`:
+
+```python
+class CryptoHolding(BaseModel):
+    asset: str = Field(..., description="Crypto asset symbol")
+    quantity: float = Field(..., description="Quantity held")
+
+class FinancialSummary(BaseModel):
+    ...
+    net_crypto_holdings: list[CryptoHolding] = Field(
+        default_factory=list, description="Net crypto holdings by asset"
+    )
+```
+
+**Reason**: OpenAI Agents SDK requires strict JSON schema without `additionalProperties`, so we can't use open-ended dicts.
+
+#### 3. Integration Tests (`tests/fraud_detection/test_intake_agent.py`)
+
+**Test Coverage**:
+
+- ✅ Agent creation (verify agent is properly configured)
+- ✅ Output structure validation (verify IntakeOutput model)
+- ✅ **API Integration**: Legitimate freelancer case (PASSED ✅)
+- ✅ **API Integration**: Fraud structuring case (PASSED ✅)
+
+**Test Results**:
+
+```
+TestIntakeAgentCreation: 1/1 passed
+TestIntakeAgentStructure: 1/1 passed
+TestIntakeAgentAPI: 2/2 passed (both API tests)
+```
+
+### API Integration Test Results
+
+**Legitimate Case (Chen Lee - Freelancer)**:
+
+```
+✅ Extracted 6 signals:
+  - customer_behavior (positive): High volume international deposits consistent with profile
+  - geographic_risk (neutral): International transfers justified by business
+  - transaction_pattern (neutral): Large deposits consistent with freelance work
+  - transaction_pattern (positive): Large hardware purchase explicitly noted as business expense
+  - crypto_activity (positive): Scheduled BTC savings plan ($1,000 CAD monthly)
+  - customer_behavior (positive): Long-standing account (opened 2020)
+
+✅ Risk areas to investigate (3):
+  - Verification of international client details
+  - Confirmation of business expenditures with documentation
+  - Ongoing monitoring for deviations from established patterns
+```
+
+**Fraud Case (Maya Singh - Structuring)**:
+
+```
+✅ Extracted 7 negative signals:
+  - cash_usage: Three cash deposits totaling £16,500, all individually under threshold
+  - cash_usage: £9,950 cash withdrawal immediately after £10,000 wire transfer
+  - crypto_activity: Multiple transfers to offshore exchange (DigitalGulf)
+  - transaction_pattern: Three £7,500 transfers, consistently below monitoring threshold
+  - customer_behavior: Profile says "Low-Risk" but activity shows high-risk patterns
+  - geographic_risk: Dubai travel expense concurrent with suspicious activity
+  - customer_behavior: Rapid initiation of structured deposits after account opening
+
+✅ Risk areas (6):
+  - Source of funds for recurring cash deposits and third-party wire
+  - Purpose of structured cash deposits and large withdrawal
+  - Relationship with DigitalGulf Exchange
+  - Reasons for Dubai travel
+  - Verification of declared income vs. transaction volume
+  - Potential layering and placement of illicit funds
+```
+
+### Key Implementation Details
+
+1. **Signal Extraction**: The agent successfully identifies:
+
+   - **Positive signals** for legitimate activity (consistent with profile)
+   - **Neutral signals** for ambiguous patterns (require context)
+   - **Negative signals** for suspicious activity (red flags)
+
+2. **Risk Area Identification**: The agent suggests specific, actionable investigation areas:
+
+   - Source of funds verification
+   - Transaction pattern analysis
+   - Geographic risk assessment
+   - Profile consistency checks
+
+3. **Structured Output**: All outputs are properly validated Pydantic models, ensuring type safety and consistency
+
+### Files Created/Modified
+
+```
+src/fraud_detection/
+├── models.py                    # Modified: Added CryptoHolding model
+├── document_loader.py           # Modified: Updated to use list[CryptoHolding]
+└── agents/
+    ├── __init__.py              # Created
+    └── intake.py                # Created (80 lines)
+
+tests/fraud_detection/
+├── test_models.py               # Modified: Updated crypto holdings tests
+├── test_document_loader.py      # Modified: Updated crypto holdings assertions
+└── test_intake_agent.py         # Created (175 lines, 4 tests)
+```
+
+### Next Steps (Phase 5)
+
+According to the plan, the next steps are:
+
+**Phase 5-7: Specialist Agents**
+
+- Create Planner Agent (generates investigation queries)
+- Create Typology Matcher Agent (dual KB: Wikipedia + Google)
+- Create Pattern Analyzer Agent (dual KB: Wikipedia + Google)
+- Create Entity Research Agent (Google Search only)
+- Implement parallel execution with `gather_with_progress`
 
 ---
 

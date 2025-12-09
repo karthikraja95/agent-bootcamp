@@ -42,14 +42,21 @@ class Transaction(BaseModel):
     crypto_qty: float | None = Field(None, description="Crypto quantity")
 
 
+class CryptoHolding(BaseModel):
+    """Crypto asset holding."""
+
+    asset: str = Field(..., description="Crypto asset symbol (e.g., 'BTC', 'ETH')")
+    quantity: float = Field(..., description="Quantity held")
+
+
 class FinancialSummary(BaseModel):
     """Financial summary metrics from the report."""
 
     total_deposits: float = Field(..., description="Total deposits in FIAT")
     total_non_crypto_spend: float = Field(..., description="Total non-crypto spending/transfers")
     total_crypto_buys: float = Field(..., description="Total FIAT used for crypto purchases")
-    net_crypto_holdings: dict[str, float] = Field(
-        default_factory=dict, description="Net crypto holdings by asset (e.g., {'BTC': 0.052})"
+    net_crypto_holdings: list[CryptoHolding] = Field(
+        default_factory=list, description="Net crypto holdings by asset"
     )
     currency: str = Field(default="CAD", description="Currency for all FIAT amounts")
 

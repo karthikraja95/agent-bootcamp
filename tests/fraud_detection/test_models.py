@@ -11,6 +11,7 @@ import pytest
 from pydantic import ValidationError
 
 from src.fraud_detection.models import (
+    CryptoHolding,
     CustomerProfile,
     CustomerReport,
     EntityCheckResult,
@@ -125,11 +126,13 @@ class TestFinancialSummary:
             total_deposits=40800.00,
             total_non_crypto_spend=25950.00,
             total_crypto_buys=3000.00,
-            net_crypto_holdings={"BTC": 0.052},
+            net_crypto_holdings=[CryptoHolding(asset="BTC", quantity=0.052)],
             currency="CAD",
         )
         assert summary.total_deposits == 40800.00
-        assert summary.net_crypto_holdings["BTC"] == 0.052
+        assert len(summary.net_crypto_holdings) == 1
+        assert summary.net_crypto_holdings[0].asset == "BTC"
+        assert summary.net_crypto_holdings[0].quantity == 0.052
 
     def test_multiple_crypto_assets(self):
         """Test summary with multiple crypto assets."""
@@ -137,7 +140,11 @@ class TestFinancialSummary:
             total_deposits=50000.00,
             total_non_crypto_spend=10000.00,
             total_crypto_buys=5000.00,
-            net_crypto_holdings={"BTC": 0.052, "ETH": 1.5, "USDT": 1000.0},
+            net_crypto_holdings=[
+                CryptoHolding(asset="BTC", quantity=0.052),
+                CryptoHolding(asset="ETH", quantity=1.5),
+                CryptoHolding(asset="USDT", quantity=1000.0),
+            ],
             currency="USD",
         )
         assert len(summary.net_crypto_holdings) == 3
@@ -171,7 +178,7 @@ class TestCustomerReport:
             total_deposits=12500.00,
             total_non_crypto_spend=0.00,
             total_crypto_buys=0.00,
-            net_crypto_holdings={},
+            net_crypto_holdings=[],
             currency="CAD",
         )
         report = CustomerReport(
