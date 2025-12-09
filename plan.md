@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Build an AML (Anti-Money Laundering) fraud detection multi-agent system by extending the existing multi-agent framework in `/src/2_frameworks/2_multi_agent/`. The system will analyze customer transaction reports (`.docx`/`.txt` format) through specialized agents that leverage **Google Search grounding (via Gemini)** for all external knowledge lookups.
+Build an AML (Anti-Money Laundering) fraud detection multi-agent system by extending the existing multi-agent framework in `/src/2_frameworks/2_multi_agent/`. The system will analyze customer transaction reports (`.txt` format) through specialized agents that leverage **dual knowledge sources**: Wikipedia (via Weaviate) for established AML concepts, and Google Search (via Gemini) for current events and entity checks.
 
 ---
 
