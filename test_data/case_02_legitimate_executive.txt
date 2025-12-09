@@ -1,0 +1,49 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10046
+Name                    Emily Smith
+Account Type            Wealth Management & Savings
+Opening Date            2015-11-20
+Location                New York, NY, USA
+Documented Profile      Tech Executive; Established Investment Strategies
+Investment Profile      Passive/Long-Term FIAT & Crypto Accumulation
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Emily Smith demonstrates highly predictable and organized financial behavior. Her high transaction volume is fully supported by her high income and established, documented long-term investment plan.
+
+September (Routine Savings): Large, consistent salary deposit followed by scheduled transfers into various savings and investment vehicles.
+October (International Payment): A large international transfer occurs, pre-scheduled and documented as an annual tuition payment for a family member abroad.
+November (Scheduled DCA): Consistent, recurring transfers used for dollar-cost averaging (DCA) into both a brokerage account and established crypto assets.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                             FIAT Amount (USD)       Crypto Asset    Crypto QTY
+2025-09-05      Deposit         Monthly Salary Direct Deposit           +$25,000.00             N/A             N/A
+2025-09-08      Transfer        Brokerage Investment Transfer           -$10,000.00             N/A             N/A
+2025-09-15      Payment         Mortgage & Property Tax                 -$5,800.00              N/A             N/A
+2025-09-28      Crypto Buy      Scheduled BTC DCA                       -$1,500.00              BTC             +0.027
+2025-10-02      Transfer        International Wire (Tuition)            -$15,000.00             N/A             N/A
+2025-10-10      Deposit         Stock Dividend Payment                  +$1,200.00              N/A             N/A
+2025-10-25      Purchase        High-Value Retail (Home Goods)          -$2,100.00              N/A             N/A
+2025-10-28      Crypto Buy      Scheduled BTC DCA                       -$1,500.00              BTC             +0.026
+2025-11-05      Deposit         Monthly Salary Direct Deposit           +$25,000.00             N/A             N/A
+2025-11-10      Transfer        Brokerage Investment Transfer           -$10,000.00             N/A             N/A
+2025-11-18      Payment         Credit Card Bill                        -$3,500.00              N/A             N/A
+2025-11-20      Crypto Buy      Scheduled ETH DCA                       -$2,000.00              ETH             +0.65
+2025-11-28      Crypto Buy      Scheduled BTC DCA                       -$1,500.00              BTC             +0.028
+2025-11-30      Payment         Utilities & Services                    -$450.00                N/A             N/A
+
+
+IV. Financial & Crypto Summary
+Metric                                  Calculation                                             Value (USD)
+Total FIAT Deposits                     $25,000 + 1,200 + 25,000                                $51,200.00
+Total Investment Outflows               $(10,000 + 10,000 Brokerage + 5,000 Crypto)             $25,000.00
+Total Operating Expenses                $(5,800 + 15,000 + 2,100 + 3,500 + 450)                 $26,850.00
+Net BTC Change                          $0.027 + 0.026 + 0.028                                  +0.081 BTC
+Net ETH Change                          $0.65                                                   +0.65 ETH
+

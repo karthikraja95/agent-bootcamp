@@ -1,0 +1,110 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10201
+Name                    Sarah Thompson
+Account Type            Personal Checking
+Opening Date            2025-08-15
+Location                Phoenix, AZ, USA
+Registered Business     None (Unemployed - Recent College Graduate)
+Investment Profile      No Investment Activity
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Sarah Thompson is a 23-year-old recent college graduate who opened an account in August 2025. She claims to have started a "work-from-home payment processing job" but exhibits classic money mule behavior patterns.
+
+September (Recruitment Phase): Account opened with minimal balance. First large deposit received from unknown business entity. Customer immediately forwarded 90% of funds to international accounts, keeping 10% as "commission."
+October (Active Mule Phase): Received deposits from 12 different sources, all claiming to be "client payments" for her "payment processing business." Rapid same-day forwarding of funds to various international destinations.
+November (Escalation): Volume increased significantly. Customer received deposits totaling $287K in one month. All funds forwarded within hours of receipt. Customer unable to provide business documentation when questioned.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Destination/Source
+2025-09-03      Deposit         Opening Balance                                 +$250.00                Personal funds
+2025-09-05      Deposit         Wire - "Business Payment" (TechFlow Inc)        +$8,500.00              Unknown company
+2025-09-05      Transfer        Wire to Malaysia                                -$7,650.00              International
+2025-09-08      Deposit         ACH - "Client Payment" (DataCorp)               +$12,000.00             Unknown company
+2025-09-08      Transfer        Wire to Philippines                             -$10,800.00             International
+2025-09-12      Deposit         Wire - "Invoice Payment" (GlobalTech)           +$15,500.00             Unknown company
+2025-09-12      Transfer        Wire to Nigeria                                 -$13,950.00             International
+2025-09-15      Deposit         ACH - "Service Fee" (MediSolutions)             +$9,800.00              Unknown company
+2025-09-15      Transfer        Wire to India                                   -$8,820.00              International
+2025-09-18      Withdrawal      ATM Cash Withdrawal                             -$980.00                Personal use
+2025-09-20      Deposit         Wire - "Consulting Payment" (FinanceHub)        +$18,000.00             Unknown company
+2025-09-20      Transfer        Wire to Vietnam                                 -$16,200.00             International
+2025-09-25      Deposit         ACH - "Project Payment" (RetailChain)           +$11,200.00             Unknown company
+2025-09-25      Transfer        Wire to Indonesia                               -$10,080.00             International
+2025-09-28      Withdrawal      ATM Cash Withdrawal                             -$1,120.00              Personal use
+2025-10-02      Deposit         Wire - "Business Payment" (AutoParts LLC)       +$22,000.00             Unknown company
+2025-10-02      Transfer        Wire to China                                   -$19,800.00             International
+2025-10-05      Deposit         ACH - "Invoice Settlement" (HealthCare Co)      +$16,500.00             Unknown company
+2025-10-05      Transfer        Wire to Thailand                                -$14,850.00             International
+2025-10-08      Deposit         Wire - "Service Payment" (LogisticsPro)         +$19,800.00             Unknown company
+2025-10-08      Transfer        Wire to Pakistan                                -$17,820.00             International
+2025-10-10      Deposit         ACH - "Client Payment" (TechStart Inc)          +$14,200.00             Unknown company
+2025-10-10      Transfer        Wire to Bangladesh                              -$12,780.00             International
+2025-10-12      Withdrawal      ATM Cash Withdrawal                             -$1,420.00              Personal use
+2025-10-15      Deposit         Wire - "Project Fee" (BuildCorp)                +$25,000.00             Unknown company
+2025-10-15      Transfer        Wire to Ukraine                                 -$22,500.00             International
+2025-10-18      Deposit         ACH - "Consulting Fee" (MarketingHub)           +$13,500.00             Unknown company
+2025-10-18      Transfer        Wire to Romania                                 -$12,150.00             International
+2025-10-20      Deposit         Wire - "Service Payment" (CloudSystems)         +$21,000.00             Unknown company
+2025-10-20      Transfer        Wire to Kenya                                   -$18,900.00             International
+2025-10-22      Deposit         ACH - "Invoice Payment" (DataAnalytics)         +$17,800.00             Unknown company
+2025-10-22      Transfer        Wire to Ghana                                   -$16,020.00             International
+2025-10-25      Deposit         Wire - "Business Payment" (SoftwareCo)          +$19,500.00             Unknown company
+2025-10-25      Transfer        Wire to South Africa                            -$17,550.00             International
+2025-10-28      Withdrawal      ATM Cash Withdrawal                             -$1,950.00              Personal use
+2025-11-01      Deposit         Wire - "Client Payment" (EnergyCorp)            +$28,000.00             Unknown company
+2025-11-01      Transfer        Wire to Russia                                  -$25,200.00             International
+2025-11-03      Deposit         ACH - "Project Payment" (ConstructCo)           +$24,500.00             Unknown company
+2025-11-03      Transfer        Wire to Turkey                                  -$22,050.00             International
+2025-11-05      Deposit         Wire - "Service Fee" (TransportHub)             +$31,000.00             Unknown company
+2025-11-05      Transfer        Wire to Brazil                                  -$27,900.00             International
+2025-11-08      Deposit         ACH - "Invoice Settlement" (FoodChain)          +$26,800.00             Unknown company
+2025-11-08      Transfer        Wire to Mexico                                  -$24,120.00             International
+2025-11-10      Deposit         Wire - "Consulting Payment" (LegalPro)          +$29,500.00             Unknown company
+2025-11-10      Transfer        Wire to Colombia                                -$26,550.00             International
+2025-11-12      Withdrawal      ATM Cash Withdrawal                             -$2,950.00              Personal use
+2025-11-15      Deposit         ACH - "Business Payment" (InsuranceCo)          +$33,000.00             Unknown company
+2025-11-15      Transfer        Wire to Argentina                               -$29,700.00             International
+2025-11-18      Deposit         Wire - "Project Fee" (RealEstateLLC)            +$27,200.00             Unknown company
+2025-11-18      Transfer        Wire to Peru                                    -$24,480.00             International
+2025-11-20      Deposit         ACH - "Service Payment" (TravelAgency)          +$22,500.00             Unknown company
+2025-11-20      Transfer        Wire to Chile                                   -$20,250.00             International
+2025-11-22      Deposit         Wire - "Client Payment" (FashionBrand)          +$35,000.00             Unknown company
+2025-11-22      Transfer        Wire to Poland                                  -$31,500.00             International
+2025-11-25      Deposit         ACH - "Invoice Payment" (SportsCo)              +$30,000.00             Unknown company
+2025-11-25      Transfer        Wire to Czech Republic                          -$27,000.00             International
+2025-11-28      Withdrawal      ATM Cash Withdrawal                             -$3,000.00              Personal use
+2025-11-30      Payment         Account Maintenance Fee                         -$15.00                 Bank fee
+
+
+IV. Financial Summary
+Metric                                  Calculation                                             Value (USD)
+Total Deposits Received                 All incoming wires and ACH                              $491,550.00
+Total Transfers Out (International)     All outgoing wires                                      $442,470.00
+Total Cash Withdrawals (Commission)     ATM withdrawals                                         $11,420.00
+Retention Rate                          Cash kept / Total deposits                              2.3%
+Number of Source Companies              Unique depositors                                       28 companies
+Number of Destination Countries         Unique wire destinations                                25 countries
+Average Time to Forward                 Deposit to transfer                                     <4 hours
+
+Critical Red Flags:
+- Recent account opening (Aug 2025) followed by immediate high-volume activity
+- Unemployed recent graduate processing $491K in 3 months
+- No legitimate business registration or documentation
+- 28 different "companies" sending payments (all unknown/unverifiable)
+- Immediate forwarding of 90% of funds (classic mule behavior)
+- 10% retention matches typical mule commission structure
+- 25 different destination countries (many high-risk)
+- Same-day processing (deposits and transfers within hours)
+- Unable to provide invoices, contracts, or business documentation
+- "Work from home payment processing" is common mule recruitment pitch
+- No business expenses, infrastructure, or operating costs
+- Pattern consistent with fraud proceeds laundering
+- Multiple source companies likely victims of business email compromise (BEC)
+

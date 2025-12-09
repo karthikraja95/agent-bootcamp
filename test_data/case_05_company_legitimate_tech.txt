@@ -1,0 +1,81 @@
+I. Company Profile
+Field                   Value
+Company ID              CORP-20156
+Company Name            NeuralSync Technologies Inc.
+Account Type            Business Operating & Payroll
+Opening Date            2021-03-15
+Location                San Francisco, CA, USA
+Industry                AI/ML SaaS Platform
+Business Model          B2B Software Subscriptions (Annual & Monthly)
+Employees               47 (as of Nov 2025)
+Annual Revenue          ~$8.5M (2024)
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Company History Overview
+NeuralSync Technologies is a venture-backed AI software company with established revenue streams from enterprise clients. The company demonstrates typical SaaS business patterns with recurring revenue, payroll obligations, and operational expenses.
+
+September (Routine Operations): Regular subscription revenue from enterprise clients, bi-weekly payroll processing, cloud infrastructure costs, and vendor payments.
+October (Funding Round): Received Series A funding ($2.5M) from known VC firm (Sequoia Capital). Increased hiring activity and infrastructure investment.
+November (International Expansion): Opened European subsidiary (Ireland), initiated international wire transfers for EU operations, hired 8 new employees across US and EU.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Notes
+2025-09-03      Deposit         Client Payment - Acme Corp (Annual Sub)         +$125,000.00            Enterprise client
+2025-09-05      Deposit         Client Payment - TechFlow Ltd (Monthly)         +$8,500.00              Recurring
+2025-09-06      Payment         Payroll Processing (23 employees)               -$187,000.00            Bi-weekly
+2025-09-10      Payment         AWS Cloud Services                              -$12,400.00             Infrastructure
+2025-09-12      Deposit         Client Payment - DataViz Inc (Annual)           +$95,000.00             Enterprise client
+2025-09-15      Payment         Office Rent (SF)                                -$18,500.00             Monthly
+2025-09-18      Payment         Marketing Services - Google Ads                 -$15,000.00             Campaign
+2025-09-20      Payment         Payroll Processing (23 employees)               -$187,000.00            Bi-weekly
+2025-09-22      Deposit         Client Payment - GlobalTech (Quarterly)         +$42,000.00             Mid-size client
+2025-09-25      Payment         Legal & Accounting Services                     -$8,500.00              Professional fees
+2025-09-28      Payment         Software Licenses (GitHub, Slack, etc)          -$4,200.00              Tools
+2025-10-01      Deposit         Series A Funding - Sequoia Capital              +$2,500,000.00          Investment round
+2025-10-03      Deposit         Client Payment - MediTech Solutions             +$78,000.00             Healthcare client
+2025-10-04      Payment         Payroll Processing (23 employees)               -$187,000.00            Bi-weekly
+2025-10-08      Transfer        Capital Investment - Equipment                  -$125,000.00            GPU servers
+2025-10-10      Payment         AWS Cloud Services                              -$14,800.00             Increased usage
+2025-10-12      Payment         Recruitment Fees                                -$35,000.00             Hiring expansion
+2025-10-15      Payment         Office Rent (SF)                                -$18,500.00             Monthly
+2025-10-18      Payment         Payroll Processing (28 employees)               -$225,000.00            New hires
+2025-10-22      Deposit         Client Payment - FinServe Global                +$156,000.00            Financial services
+2025-10-25      Transfer        Ireland Subsidiary Setup                        -$50,000.00             EU expansion
+2025-10-28      Payment         Legal Fees (International)                      -$22,000.00             EU incorporation
+2025-11-01      Payment         Payroll Processing (31 employees)               -$248,000.00            Bi-weekly
+2025-11-03      Deposit         Client Payment - RetailChain Inc                +$89,000.00             Retail client
+2025-11-05      Deposit         Client Payment - AutoDrive Systems              +$112,000.00            Automotive client
+2025-11-08      Transfer        Wire to Ireland Office (Operating Capital)      -$180,000.00            EU operations
+2025-11-10      Payment         AWS Cloud Services                              -$16,200.00             Infrastructure
+2025-11-12      Payment         Ireland Office Rent (Dublin)                    -$12,500.00             New office
+2025-11-15      Payment         Payroll Processing (31 employees)               -$248,000.00            Bi-weekly
+2025-11-18      Payment         Office Rent (SF)                                -$18,500.00             Monthly
+2025-11-20      Transfer        Wire to Ireland (Payroll - 8 EU employees)      -$65,000.00             EU payroll
+2025-11-22      Deposit         Client Payment - CloudNet Services              +$67,000.00             Cloud provider
+2025-11-25      Payment         Marketing Conference (Web Summit Dublin)        -$28,000.00             EU expansion
+2025-11-28      Payment         Software Licenses & Tools                       -$5,800.00              Monthly
+2025-11-29      Payment         Payroll Processing (31 employees)               -$248,000.00            Bi-weekly
+
+
+IV. Financial Summary
+Metric                                  Calculation                                             Value (USD)
+Total Revenue (Client Payments)         Sum of all client deposits                              $772,500.00
+Total Funding Received                  Series A                                                $2,500,000.00
+Total Payroll Expenses                  All payroll payments                                    $1,530,000.00
+Total Operating Expenses                Infrastructure, rent, services, etc.                    $380,400.00
+Total International Transfers           Ireland operations                                      $295,000.00
+Net Cash Position Change                Revenue + Funding - All Expenses                        +$1,067,100.00
+
+Business Verification:
+- Company registered: Delaware C-Corp (2021)
+- Sequoia Capital investment: Publicly announced Oct 2025
+- Clients verifiable: Fortune 500 and established tech companies
+- Employee count: LinkedIn shows 47 employees
+- EU subsidiary: Irish Companies Registration Office filing confirmed
+- Revenue growth: 145% YoY (consistent with Series A stage)
+

@@ -1,0 +1,48 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10044
+Name                    Chen Lee
+Account Type            Business Digital & Personal Savings
+Opening Date            2020-08-10
+Location                Vancouver, BC, Canada
+Registered Business     Lee Digital Art & Design (Freelancer)
+Investment Profile      High-Volume Business/Routine Crypto Holdings
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Chen Lee's activity is high-volume and involves crypto and international transfers, but these patterns are consistent with their documented professional profile as an international digital freelancer.
+
+September (Routine Business): Regular, large incoming transfers reflecting payment for digital services (web design/NFT art).
+October (High-Value Purchase): A large, single outflow for the purchase of an advanced computational rig, fully justified by the business profile.
+November (Routine Crypto HODLing): A scheduled, repeating purchase of Bitcoin (BTC) for long-term savings, a known strategy for this customer.
+
+
+III. Transaction History Detail
+All FIAT amounts are in CAD unless noted.
+
+Date            Type            Description                             FIAT Amount (CAD)       Crypto Asset    Crypto QTY
+2025-09-03      Deposit         Incoming Wire (US Client)               +$12,500.00             N/A             N/A
+2025-09-11      Deposit         Incoming PayPal (EU Client)             +$7,800.00              N/A             N/A
+2025-09-18      Payment         Software Subscription Bundle            -$350.00                N/A             N/A
+2025-09-29      Transfer        Personal Account Transfer               -$10,000.00             N/A             N/A
+2025-10-05      Purchase        High-End Computer Hardware              -$8,200.00              N/A             N/A
+2025-10-15      Deposit         Incoming ACH (Domestic)                 +$6,500.00              N/A             N/A
+2025-10-22      Payment         Business Utility Bill                   -$450.00                N/A             N/A
+2025-11-01      Crypto Buy      Scheduled BTC Savings Plan              -$1,000.00              BTC             +0.018
+2025-11-02      Deposit         Incoming Wire (HK Client)               +$14,000.00             N/A             N/A
+2025-11-08      Transfer        Loan Payment (Auto)                     -$950.00                N/A             N/A
+2025-11-15      Crypto Buy      Scheduled BTC Savings Plan              -$1,000.00              BTC             +0.017
+2025-11-20      Deposit         Transfer from Personal Savings          +$5,000.00              N/A             N/A
+2025-11-25      Transfer        Supplier Payment (CDN)                  -$6,000.00              N/A             N/A
+2025-11-28      Crypto Buy      Scheduled BTC Savings Plan              -$1,000.00              BTC             +0.017
+
+
+IV. Financial & Crypto Summary
+Metric                                  Calculation                                             Value (CAD)
+Total Business Deposits                 $12,500 + 7,800 + 6,500 + 14,000                        $40,800.00
+Total Non-Crypto Spend/Transfers        $(350 + 10,000 + 8,200 + 450 + 950 + 6,000)             $25,950.00
+Total FIAT used for Crypto Buys         $1,000 + 1,000 + 1,000                                  $3,000.00
+Net Crypto Holdings Change              $(0.018 + 0.017 + 0.017)                                +0.052 BTC
+

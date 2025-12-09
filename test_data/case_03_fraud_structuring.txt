@@ -1,0 +1,55 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10043
+Name                    Maya Singh
+Account Type            Standard Savings & Digital
+Opening Date            2024-03-20
+Location                London, UK
+Investment Profile      Low-Risk FIAT / Frequent Cash User
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Maya Singh displays a history of frequent, small cash deposits and a highly concentrated period of specific, structured transfers to an offshore crypto exchange.
+
+September (Baseline): Dominated by frequent cash deposits just under the reporting threshold. High volume of small, routine purchases.
+October (Structuring Phase): Initiated transfers to a high-risk offshore crypto exchange (DigitalGulf), consistently making transfers below a potential monitoring threshold ($9,900/£8,000 equivalent).
+November (Liquidation & Travel): Continued structured transfers, followed by a large, unexplained withdrawal and a sudden high-value purchase indicative of international travel or expense.
+
+
+III. Transaction History Detail
+This table details all synthetic transactions across the three-month period. All FIAT amounts are in GBP (£).
+
+Date            Type            Description                             FIAT Amount (GBP)       Crypto Asset    Crypto QTY
+2025-09-02      Deposit         Cash Deposit (ATM)                      +£5,500.00              N/A             N/A
+2025-09-10      Deposit         Cash Deposit (Branch)                   +£4,800.00              N/A             N/A
+2025-09-18      Purchase        Electronic Retailer                     -£155.00                N/A             N/A
+2025-09-25      Deposit         Cash Deposit (ATM)                      +£6,200.00              N/A             N/A
+2025-10-04      Transfer        Funds to DigitalGulf Exchange           -£7,500.00              N/A             N/A
+2025-10-12      Crypto Buy      BTC Purchase (via DigitalGulf)          -£7,450.00              BTC             +0.12
+2025-10-20      Transfer        Funds to DigitalGulf Exchange           -£7,500.00              N/A             N/A
+2025-10-28      Crypto Buy      ETH Purchase (via DigitalGulf)          -£7,450.00              ETH             +2.20
+2025-11-05      Deposit         Third-Party Wire Transfer               +£10,000.00             N/A             N/A
+2025-11-06      Withdrawal      Large Cash Withdrawal                   -£9,950.00              N/A             N/A
+2025-11-15      Transfer        Funds to DigitalGulf Exchange           -£7,500.00              N/A             N/A
+2025-11-20      Purchase        Hotel/Travel Expense (Dubai)            -£4,200.00              N/A             N/A
+2025-11-22      Crypto Buy      ADA Purchase (via DigitalGulf)          -£7,450.00              ADA             +18,000.00
+2025-11-28      Crypto Sell     BTC Sale (Small portion)                +£1,500.00              BTC             -0.02
+2025-11-30      Payment         Utility Bill                            -£120.00                N/A             N/A
+
+
+IV. Financial & Crypto Summary
+A. FIAT (GBP) Movement
+Metric                                  Calculation                                             Value (GBP)
+Total Deposits                          $5,500 + 4,800 + 6,200 + 10,000                         £26,500.00
+Total Transfers to Crypto               $(7,500 + 7,500 + 7,500)                                £22,500.00
+Net Spend/Withdrawals                   $(155 + 7,450 + 7,450 + 9,950 + 4,200 + 7,450 + 120) - 1,500  £35,775.00
+Total Transaction Value                 $(26,500 Deposits + 38,325 Withdrawals/Transfers)       £64,825.00
+
+B. Net Crypto Holdings Change (Quantity)
+Asset           Total Buys (QTY)        Total Sells (QTY)       Net Change
+Bitcoin (BTC)   $0.12                   $0.02                   +0.10
+Ethereum (ETH)  $2.20                   $0.00                   +2.20
+Cardano (ADA)   $18,000.00              $0.00                   +18,000.00
+

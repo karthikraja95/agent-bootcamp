@@ -1,0 +1,94 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10129
+Name                    Alex Rivera
+Account Type            Personal Trading & Investment
+Opening Date            2022-11-08
+Location                Austin, TX, USA
+Registered Business     None (Self-Employed Day Trader)
+Investment Profile      High-Frequency Crypto Trading / Active Portfolio Management
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Alex Rivera is a self-described cryptocurrency day trader with a documented history of high-volume trading activity. The customer has provided tax returns showing crypto trading income but patterns raise questions about source of funds and potential mixing of legitimate and illicit activity.
+
+September (High-Volume Trading): Executed 127 crypto trades across 6 exchanges. Mix of profitable and losing trades. Total volume $485K but net profit only $12K (2.5% margin).
+October (Unusual Patterns): Received several large P2P crypto transfers from unknown wallets. Immediately converted to fiat and withdrew cash. Trading volume increased 340% with no clear catalyst.
+November (Mixed Signals): Continued high-volume trading but also engaged in behaviors inconsistent with pure trading strategy (large cash withdrawals, transfers to privacy coins, use of mixing services).
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Crypto Asset    Crypto QTY
+2025-09-02      Deposit         Transfer from Coinbase Pro                      +$45,000.00             N/A             N/A
+2025-09-03      Crypto Buy      BTC Purchase (Kraken)                           -$22,000.00             BTC             +0.396
+2025-09-04      Crypto Sell     BTC Sale (Binance.US)                           +$22,800.00             BTC             -0.396
+2025-09-05      Crypto Buy      ETH Purchase (Gemini)                           -$18,000.00             ETH             +5.87
+2025-09-06      Crypto Sell     ETH Sale (Coinbase)                             +$18,450.00             ETH             -5.87
+2025-09-08      Deposit         Transfer from Binance.US                        +$38,000.00             N/A             N/A
+2025-09-10      Crypto Buy      SOL Purchase (Kraken)                           -$15,000.00             SOL             +112.5
+2025-09-11      Crypto Sell     SOL Sale (FTX)                                  +$15,600.00             SOL             -112.5
+2025-09-15      Withdrawal      Cash Withdrawal                                 -$8,000.00              N/A             N/A
+2025-09-18      Crypto Buy      Multiple Altcoins (Various)                     -$42,000.00             Various         Various
+2025-09-20      Crypto Sell     Altcoin Sales (Various)                         +$43,200.00             Various         Various
+2025-09-25      Deposit         Transfer from Gemini                            +$28,000.00             N/A             N/A
+2025-09-28      Payment         Trading Platform Fees                           -$1,850.00              N/A             N/A
+2025-10-02      Deposit         P2P Crypto Transfer (Unknown Source)            +$67,000.00             BTC             +1.206
+2025-10-03      Crypto Sell     BTC Sale (Immediate)                            +$66,500.00             BTC             -1.206
+2025-10-04      Withdrawal      Cash Withdrawal (Large)                         -$32,000.00             N/A             N/A
+2025-10-05      Withdrawal      Cash Withdrawal (Large)                         -$30,000.00             N/A             N/A
+2025-10-08      Deposit         P2P Crypto Transfer (Unknown Source)            +$48,000.00             ETH             +15.65
+2025-10-09      Crypto Sell     ETH Sale (Immediate)                            +$47,800.00             ETH             -15.65
+2025-10-12      Crypto Buy      Privacy Coin (Monero)                           -$25,000.00             XMR             +156.25
+2025-10-15      Transfer        To Mixing Service (Tornado Cash)                -$18,000.00             ETH             -5.87
+2025-10-18      Deposit         From Mixing Service (Different Wallet)          +$17,500.00             ETH             +5.70
+2025-10-20      Crypto Buy      High-Volume Trading (Multiple)                  -$125,000.00            Various         Various
+2025-10-22      Crypto Sell     High-Volume Trading (Multiple)                  +$132,000.00            Various         Various
+2025-10-25      Withdrawal      Cash Withdrawal                                 -$15,000.00             N/A             N/A
+2025-10-28      Payment         Trading Platform Fees                           -$3,200.00              N/A             N/A
+2025-11-01      Deposit         P2P Crypto Transfer (Unknown Source)            +$52,000.00             BTC             +0.937
+2025-11-02      Crypto Sell     BTC Sale (Immediate)                            +$51,700.00             BTC             -0.937
+2025-11-05      Withdrawal      Cash Withdrawal (Large)                         -$28,000.00             N/A             N/A
+2025-11-08      Crypto Buy      Privacy Coin (Zcash)                            -$12,000.00             ZEC             +285.71
+2025-11-10      Transfer        To Unknown Wallet (Privacy Chain)               -$35,000.00             XMR             -218.75
+2025-11-12      Crypto Buy      High-Volume Trading (Multiple)                  -$98,000.00             Various         Various
+2025-11-15      Crypto Sell     High-Volume Trading (Multiple)                  +$102,000.00            Various         Various
+2025-11-18      Withdrawal      Cash Withdrawal                                 -$22,000.00             N/A             N/A
+2025-11-20      Deposit         Transfer from Coinbase                          +$45,000.00             N/A             N/A
+2025-11-22      Transfer        To Offshore Exchange (Non-KYC)                  -$38,000.00             USDT            -38,000
+2025-11-25      Crypto Buy      Trading Activity (Various)                      -$67,000.00             Various         Various
+2025-11-28      Crypto Sell     Trading Activity (Various)                      +$69,500.00             Various         Various
+2025-11-30      Payment         Trading Platform Fees                           -$2,950.00              N/A             N/A
+
+
+IV. Financial Summary
+Metric                                  Calculation                                             Value (USD)
+Total Legitimate Trading Volume         Documented exchange activity                            $1,247,000.00
+Total P2P Deposits (Unknown Source)     Unverified incoming crypto                              $167,000.00
+Total Cash Withdrawals                  All ATM/branch withdrawals                              $135,000.00
+Total Privacy Coin Purchases            Monero, Zcash                                           $37,000.00
+Total Mixing Service Usage              Tornado Cash and similar                                $18,000.00
+Net Trading Profit (Legitimate)         Documented gains                                        $24,300.00
+Unexplained Fund Sources                P2P transfers with no documentation                     $167,000.00
+
+Concerning Patterns:
+- P2P crypto receipts from unknown wallets ($167K)
+- Immediate conversion to fiat and cash withdrawal
+- Use of privacy coins (Monero, Zcash)
+- Mixing service usage (Tornado Cash)
+- Transfers to non-KYC offshore exchanges
+- Cash withdrawals totaling $135K (potential structuring)
+- Trading volume spike (340%) coinciding with P2P receipts
+- No clear source documentation for P2P transfers
+
+Mitigating Factors:
+- Documented trading history (3 years)
+- Tax returns filed showing crypto trading income
+- Legitimate trading activity is profitable and consistent
+- Uses regulated exchanges for majority of activity
+- Some cash withdrawals may be for living expenses
+- High-frequency trading profile is documented
+

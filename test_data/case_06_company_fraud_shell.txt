@@ -1,0 +1,88 @@
+I. Company Profile
+Field                   Value
+Company ID              CORP-20298
+Company Name            Global Trade Solutions LLC
+Account Type            Business Operating
+Opening Date            2025-04-22
+Location                Wilmington, DE, USA (Registered Agent Address)
+Industry                Import/Export Trading
+Business Model          International Trade Facilitation
+Employees               Unknown (No payroll activity observed)
+Annual Revenue          Unknown (Recently established)
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Company History Overview
+Global Trade Solutions LLC was incorporated in April 2025 with minimal documentation. The company claims to facilitate international trade but shows no typical business operating patterns. No employees, no payroll, no operating expenses beyond minimal account fees.
+
+September (Initial Activity): Account opened with small initial deposit. Immediately began receiving large international wire transfers from multiple countries with no apparent business relationship.
+October (High-Volume Pass-Through): Received $2.8M in wire transfers from 15 different countries. Funds rapidly transferred out to crypto exchanges and offshore accounts. No goods or services documented.
+November (Layering): Complex web of transfers between multiple accounts. Funds moved through 3-4 intermediary accounts before final destination. Sudden account closure request filed.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Origin/Destination
+2025-09-05      Deposit         Initial Capital Deposit                         +$5,000.00              Domestic
+2025-09-08      Deposit         Wire Transfer - Import Payment                  +$125,000.00            China
+2025-09-10      Transfer        To Crypto Exchange (Binance)                    -$120,000.00            Crypto conversion
+2025-09-12      Deposit         Wire Transfer - Trade Settlement                +$87,000.00             Nigeria
+2025-09-15      Transfer        To Offshore Account (Cayman Islands)            -$85,000.00             Tax haven
+2025-09-18      Deposit         Wire Transfer - Export Payment                  +$156,000.00            Russia
+2025-09-20      Transfer        To Intermediary Account (Cyprus)                -$150,000.00            EU offshore
+2025-09-22      Deposit         Wire Transfer - Consulting Fee                  +$95,000.00             UAE
+2025-09-25      Transfer        To Crypto Exchange (Kraken)                     -$92,000.00             Crypto conversion
+2025-09-28      Deposit         Wire Transfer - Investment Return               +$210,000.00            British Virgin Islands
+2025-10-02      Transfer        To Multiple Crypto Wallets                      -$205,000.00            Decentralized
+2025-10-05      Deposit         Wire Transfer - Trade Finance                   +$178,000.00            Turkey
+2025-10-08      Deposit         Wire Transfer - Partnership Distribution        +$143,000.00            Panama
+2025-10-10      Transfer        To Intermediary LLC (Nevada)                    -$315,000.00            Domestic shell
+2025-10-12      Deposit         Wire Transfer - Export Settlement               +$267,000.00            Vietnam
+2025-10-15      Deposit         Wire Transfer - Commodity Trading               +$198,000.00            Kazakhstan
+2025-10-18      Transfer        To Crypto Exchange (Coinbase)                   -$190,000.00            Crypto conversion
+2025-10-20      Deposit         Wire Transfer - Investment Income               +$234,000.00            Seychelles
+2025-10-22      Transfer        To Offshore Account (Switzerland)               -$230,000.00            Private banking
+2025-10-25      Deposit         Wire Transfer - Trade Commission                +$189,000.00            Malaysia
+2025-10-28      Deposit         Wire Transfer - Consulting Services             +$276,000.00            Hong Kong
+2025-10-30      Transfer        To Multiple Intermediaries                      -$460,000.00            Complex layering
+2025-11-01      Deposit         Wire Transfer - Export Payment                  +$312,000.00            Indonesia
+2025-11-03      Transfer        To Crypto Exchange (Gemini)                     -$305,000.00            Crypto conversion
+2025-11-05      Deposit         Wire Transfer - Trade Settlement                +$245,000.00            Philippines
+2025-11-08      Deposit         Wire Transfer - Investment Return               +$198,000.00            Mauritius
+2025-11-10      Transfer        To Offshore Account (Cayman Islands)            -$435,000.00            Tax haven
+2025-11-12      Deposit         Wire Transfer - Partnership Income              +$167,000.00            Singapore
+2025-11-15      Transfer        To Intermediary Account (Latvia)                -$160,000.00            EU offshore
+2025-11-18      Deposit         Wire Transfer - Commodity Sale                  +$289,000.00            Ukraine
+2025-11-20      Transfer        To Multiple Crypto Wallets                      -$280,000.00            Decentralized
+2025-11-22      Deposit         Wire Transfer - Trade Finance                   +$223,000.00            Thailand
+2025-11-25      Transfer        To Offshore Account (Switzerland)               -$220,000.00            Private banking
+2025-11-28      Payment         Account Closure Fee                             -$50.00                 Bank fee
+2025-11-29      Transfer        Final Balance Transfer Out                      -$8,450.00              Unknown destination
+
+
+IV. Financial Summary
+Metric                                  Calculation                                             Value (USD)
+Total Deposits (International Wires)    Sum of all incoming wires                               $3,597,000.00
+Total Transfers Out (Crypto)            All crypto exchange transfers                           $1,192,000.00
+Total Transfers Out (Offshore)          All offshore account transfers                          $1,120,000.00
+Total Transfers Out (Intermediaries)    Complex layering transfers                              $1,285,000.00
+Net Cash Retained                       Minimal (account nearly emptied)                        $0.00
+
+Red Flags Identified:
+- No legitimate business operations (no payroll, no operating expenses)
+- Registered agent address only (no physical presence)
+- $3.6M in 3 months with no documented trade activity
+- 15+ countries involved, many high-risk jurisdictions
+- Rapid pass-through of funds (same-day or next-day transfers)
+- No invoices, contracts, or trade documentation
+- Multiple crypto exchanges used simultaneously
+- Offshore accounts in known tax havens
+- Complex layering through intermediaries
+- Account closure request immediately after activity
+- No employees or business infrastructure
+- Incorporation date (April 2025) just months before activity
+- Company name generic ("Global Trade Solutions")
+- No online presence, website, or business verification
+

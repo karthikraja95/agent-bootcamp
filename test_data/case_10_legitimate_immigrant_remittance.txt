@@ -1,0 +1,99 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10178
+Name                    Maria Gonzalez
+Account Type            Personal Checking & Savings
+Opening Date            2019-03-22
+Location                Los Angeles, CA, USA
+Registered Business     None (Healthcare Worker - Certified Nursing Assistant)
+Investment Profile      Conservative Savings / Regular Remittances
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Maria Gonzalez is a 38-year-old immigrant from El Salvador who works as a Certified Nursing Assistant (CNA) at a Los Angeles hospital. She has a well-documented pattern of sending regular remittances to family members in El Salvador and Guatemala. Her financial behavior is highly consistent and transparent.
+
+September (Routine Pattern): Regular bi-weekly salary deposits from hospital employer. Consistent living expenses (rent, utilities, groceries). Monthly remittance to mother in El Salvador ($800) and sister in Guatemala ($500).
+October (Family Emergency): Increased remittance activity due to documented family medical emergency (mother's surgery). Sent larger amounts but all properly documented with hospital bills and family communications.
+November (Return to Normal): Resumed regular remittance pattern. Saved portion of salary for annual visit home. All activity consistent with documented income and family support obligations.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Destination/Notes
+2025-09-06      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-09-08      Payment         Rent Payment                                    -$1,200.00              Apartment
+2025-09-10      Payment         Utilities (Electric, Water, Internet)           -$185.00                Monthly bills
+2025-09-12      Purchase        Grocery Shopping                                -$320.00                Food expenses
+2025-09-15      Transfer        Remittance to Mother (El Salvador)              -$800.00                Western Union
+2025-09-18      Transfer        Remittance to Sister (Guatemala)                -$500.00                MoneyGram
+2025-09-20      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-09-22      Payment         Car Insurance                                   -$145.00                Monthly premium
+2025-09-25      Purchase        Retail & Personal Items                         -$280.00                Clothing, household
+2025-09-28      Transfer        Savings Account Transfer                        -$400.00                Emergency fund
+2025-09-30      Payment         Cell Phone Bill                                 -$65.00                 Monthly service
+2025-10-04      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-10-06      Payment         Rent Payment                                    -$1,200.00              Apartment
+2025-10-08      Payment         Utilities (Electric, Water, Internet)           -$185.00                Monthly bills
+2025-10-10      Transfer        Emergency Remittance (Mother's Surgery)         -$2,500.00              Western Union
+2025-10-12      Purchase        Grocery Shopping                                -$310.00                Food expenses
+2025-10-15      Transfer        Medical Bills (Mother - El Salvador)            -$1,800.00              Hospital payment
+2025-10-18      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-10-20      Transfer        Additional Medical Support (Mother)             -$1,200.00              Western Union
+2025-10-22      Payment         Car Insurance                                   -$145.00                Monthly premium
+2025-10-25      Purchase        Retail & Personal Items                         -$220.00                Basic needs
+2025-10-28      Withdrawal      Cash Withdrawal (Family Support)                -$500.00                Send via relative
+2025-10-30      Payment         Cell Phone Bill                                 -$65.00                 Monthly service
+2025-11-01      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-11-05      Payment         Rent Payment                                    -$1,200.00              Apartment
+2025-11-08      Payment         Utilities (Electric, Water, Internet)           -$185.00                Monthly bills
+2025-11-10      Purchase        Grocery Shopping                                -$335.00                Food expenses
+2025-11-12      Transfer        Remittance to Mother (El Salvador)              -$800.00                Western Union
+2025-11-15      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-11-18      Transfer        Remittance to Sister (Guatemala)                -$500.00                MoneyGram
+2025-11-20      Payment         Car Loan Payment                                -$285.00                Monthly payment
+2025-11-22      Payment         Car Insurance                                   -$145.00                Monthly premium
+2025-11-25      Transfer        Savings Account Transfer                        -$600.00                Holiday trip fund
+2025-11-28      Purchase        Retail & Personal Items                         -$250.00                Basic needs
+2025-11-29      Deposit         Salary - LA General Hospital                    +$2,850.00              Bi-weekly paycheck
+2025-11-30      Payment         Cell Phone Bill                                 -$65.00                 Monthly service
+
+
+IV. Financial Summary
+Metric                                  Calculation                                             Value (USD)
+Total Salary Income                     All hospital paychecks                                  $22,800.00
+Total Remittances (Regular)             Monthly family support                                  $3,600.00
+Total Emergency Remittances             Mother's medical emergency                              $6,000.00
+Total Living Expenses                   Rent, utilities, groceries, etc.                        $8,315.00
+Total Savings Transfers                 Emergency fund + trip savings                           $1,000.00
+Net Cash Flow                           Income - All Expenses                                   +$3,885.00
+
+Supporting Documentation:
+- Employment verified: LA General Hospital (5+ years)
+- Salary consistent: $2,850 bi-weekly = $74,100 annually (CNA market rate)
+- Remittance pattern: 6-year history of regular family support
+- Family verification: Mother (Rosa Gonzalez, age 67, El Salvador)
+- Family verification: Sister (Carmen Gonzalez, age 42, Guatemala)
+- Medical emergency: Hospital bills from Hospital Nacional El Salvador (Oct 2025)
+- Remittance services: Western Union and MoneyGram (licensed, compliant)
+- Living expenses: Consistent with LA cost of living for single person
+- Savings behavior: Regular contributions to emergency fund
+- No luxury purchases or unexplained income
+
+Legitimacy Indicators:
+- 6+ year account history with consistent patterns
+- Verified employment at reputable hospital
+- Income matches documented salary for CNA position
+- Remittances proportional to income (15-20% of salary)
+- Family relationships documented and verified
+- Medical emergency supported by hospital documentation
+- Uses licensed remittance services (Western Union, MoneyGram)
+- Living expenses appropriate for income level
+- No sudden changes in behavior or unexplained funds
+- Transparent financial activity with clear purpose
+- Regular savings behavior indicates financial responsibility
+- No involvement with high-risk jurisdictions beyond family support
+- Remittance amounts consistent with family support (not business)
+

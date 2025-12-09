@@ -1,0 +1,71 @@
+I. Customer Profile
+Field                   Value
+Customer ID             CUST-10087
+Name                    Marcus Johnson
+Account Type            Personal Checking & Savings
+Opening Date            2018-06-15
+Location                Miami, FL, USA
+Registered Business     None (Salaried Employee - Retail Manager)
+Investment Profile      Conservative Savings / No Prior Crypto Activity
+Document Date           2025-12-09
+Time Period             Sep 1, 2025 - Nov 30, 2025
+
+
+II. Customer History Overview
+Marcus Johnson has maintained a stable, low-activity account for 7 years with predictable salary deposits and routine expenses. A dramatic shift in behavior occurred in October 2025 with no documented explanation.
+
+September (Baseline Normal): Standard salary deposit, routine bill payments, small retail purchases. Typical monthly pattern observed for past 7 years.
+October (Sudden Shift): Received three large wire transfers from different international sources totaling $87,000. No prior history of international transfers. Customer profile indicates retail manager salary (~$55K annually).
+November (Rapid Conversion): Immediately converted majority of funds to cryptocurrency across multiple exchanges. Opened accounts at 4 different crypto platforms within 2 weeks. Made several large cash withdrawals.
+
+
+III. Transaction History Detail
+All FIAT amounts are in USD.
+
+Date            Type            Description                                     FIAT Amount (USD)       Crypto Asset    Crypto QTY
+2025-09-05      Deposit         Monthly Salary Direct Deposit                   +$4,200.00              N/A             N/A
+2025-09-08      Payment         Rent Payment                                    -$1,850.00              N/A             N/A
+2025-09-12      Payment         Car Loan                                        -$425.00                N/A             N/A
+2025-09-15      Purchase        Grocery & Retail                                -$680.00                N/A             N/A
+2025-09-22      Payment         Credit Card Bill                                -$890.00                N/A             N/A
+2025-09-28      Transfer        Savings Account Transfer                        -$500.00                N/A             N/A
+2025-10-03      Deposit         Incoming Wire (Nigeria - Business Partner)      +$32,000.00             N/A             N/A
+2025-10-05      Deposit         Monthly Salary Direct Deposit                   +$4,200.00              N/A             N/A
+2025-10-08      Deposit         Incoming Wire (UAE - Investment Return)         +$28,000.00             N/A             N/A
+2025-10-12      Deposit         Incoming Wire (Hong Kong - Consulting Fee)      +$27,000.00             N/A             N/A
+2025-10-15      Payment         Rent Payment                                    -$1,850.00              N/A             N/A
+2025-10-18      Transfer        To Coinbase Exchange                            -$15,000.00             N/A             N/A
+2025-10-20      Crypto Buy      BTC Purchase (Coinbase)                         -$14,800.00             BTC             +0.267
+2025-10-22      Transfer        To Kraken Exchange                              -$18,000.00             N/A             N/A
+2025-10-24      Crypto Buy      ETH Purchase (Kraken)                           -$17,850.00             ETH             +5.82
+2025-10-28      Transfer        To Binance.US                                   -$12,000.00             N/A             N/A
+2025-11-01      Crypto Buy      USDT Purchase (Binance)                         -$11,900.00             USDT            +11,900.00
+2025-11-03      Withdrawal      Cash Withdrawal (ATM)                           -$9,800.00              N/A             N/A
+2025-11-05      Deposit         Monthly Salary Direct Deposit                   +$4,200.00              N/A             N/A
+2025-11-08      Transfer        To Gemini Exchange                              -$8,000.00              N/A             N/A
+2025-11-10      Crypto Buy      BTC Purchase (Gemini)                           -$7,900.00              BTC             +0.142
+2025-11-12      Withdrawal      Cash Withdrawal (Branch)                        -$9,500.00              N/A             N/A
+2025-11-15      Payment         Rent Payment                                    -$1,850.00              N/A             N/A
+2025-11-18      Crypto Sell     USDT Sale (Partial)                             +$3,000.00              USDT            -3,000.00
+2025-11-22      Transfer        To Unknown Wallet (External)                    -$2,800.00              N/A             N/A
+2025-11-25      Purchase        Electronics Store (High-Value)                  -$4,500.00              N/A             N/A
+2025-11-28      Payment         Credit Card Bill                                -$1,200.00              N/A             N/A
+
+
+IV. Financial & Crypto Summary
+Metric                                  Calculation                                             Value (USD)
+Total Salary Deposits                   $4,200 + 4,200 + 4,200                                  $12,600.00
+Total Wire Deposits (International)     $32,000 + 28,000 + 27,000                               $87,000.00
+Total Crypto Purchases                  $14,800 + 17,850 + 11,900 + 7,900                       $52,450.00
+Total Cash Withdrawals                  $9,800 + 9,500                                          $19,300.00
+Net Crypto Holdings                     BTC: +0.409, ETH: +5.82, USDT: +8,900                   ~$52,000 value
+
+Red Flags Identified:
+- Income inconsistency: $87K in wires vs $55K annual salary
+- No documented business or investment activity
+- Sudden crypto activity after 7 years of none
+- Multiple exchange accounts opened simultaneously
+- Large cash withdrawals just below $10K reporting threshold
+- International wires from high-risk jurisdictions (Nigeria, UAE)
+- Rapid conversion of funds (within days of receipt)
+
