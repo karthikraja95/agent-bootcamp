@@ -141,28 +141,129 @@ tests/fraud_detection/
 
 ## Overall Progress
 
-| Phase                    | Status         | Tests             |
-| ------------------------ | -------------- | ----------------- |
-| Phase 1: Data Models     | ✅ Complete    | 19/19 passing     |
-| Phase 2: Document Loader | ✅ Complete    | 10/10 passing     |
-| **Total**                | **2/8 Phases** | **29/29 passing** |
+| Phase                    | Status         | Tests               |
+| ------------------------ | -------------- | ------------------- |
+| Phase 1: Data Models     | ✅ Complete    | 19/19 passing       |
+| Phase 2: Document Loader | ✅ Complete    | 10/10 passing       |
+| Phase 3: Agent Prompts   | ✅ Complete    | 5/5 passing + 1 API |
+| **Total**                | **3/8 Phases** | **34/34 passing**   |
 
-### Next Steps (Phase 3)
+---
+
+## Phase 3: Agent Prompts ✅ COMPLETE
+
+**Date**: 2025-12-09
+**Status**: ✅ All tests passing (5/5 validation + 1 API integration)
+
+### What Was Implemented
+
+#### 1. Agent Prompts (`src/fraud_detection/prompts.py`)
+
+**All 7 Agent Instructions Defined**:
+
+1. **INTAKE_AGENT_INSTRUCTIONS** - Extracts signals from customer reports
+2. **PLANNER_AGENT_INSTRUCTIONS** - Creates investigation plans with specific queries
+3. **TYPOLOGY_MATCHER_AGENT_INSTRUCTIONS** - Matches AML typologies (dual KB)
+4. **PATTERN_ANALYZER_AGENT_INSTRUCTIONS** - Analyzes transaction patterns (dual KB)
+5. **ENTITY_RESEARCH_AGENT_INSTRUCTIONS** - Researches entities (Google Search only)
+6. **REASONING_AGENT_INSTRUCTIONS** - Synthesizes findings into coherent analysis
+7. **REPORT_AGENT_INSTRUCTIONS** - Produces final fraud assessments
+
+**Key Features**:
+
+- ✅ Clear agent identity and role definition
+- ✅ Specific task descriptions
+- ✅ Tool selection guidance for dual KB agents
+- ✅ Response format specifications
+- ✅ Professional AML/compliance language
+- ✅ Routing guidelines (when to use Wikipedia vs Google Search)
+
+**Dual Knowledge Source Strategy**:
+
+For Typology Matcher and Pattern Analyzer:
+
+- **Wikipedia (search_knowledgebase)**: AML concepts, typology definitions, regulatory frameworks, historical patterns
+- **Google Search (get_web_search_grounded_response)**: Current events, recent cases, updated guidance, entity checks
+
+#### 2. Integration Tests (`tests/fraud_detection/test_prompts_integration.py`)
+
+**Test Coverage**:
+
+- ✅ Prompt validation (all prompts exist, have task descriptions)
+- ✅ Dual KB prompts mention both tools
+- ✅ Agent creation with tools (Typology Matcher, Entity Research)
+- ✅ **API Integration**: Entity Research with Google Search (PASSED ✅)
+- ✅ Verified real API calls work with prompts
+
+**Test Results**:
+
+```
+TestPromptValidation: 3/3 passed
+TestAgentCreation: 2/2 passed
+TestAgentAPIIntegration: 1/1 passed (Entity Research)
+```
+
+**API Integration Test Output**:
+
+```
+✅ Entity Research Response:
+The OFAC (Office of Foreign Assets Control) sanctions list refers to various lists
+published by the U.S. Department of the Treasury. OFAC is responsible for enforcing
+economic and trade sanctions...
+
+[Comprehensive, accurate response with SDN list, sanctions details, etc.]
+```
+
+### Key Implementation Details
+
+1. **Prompt Structure**: Each prompt follows a consistent format:
+
+   - Agent identity ("You are a [Role] Agent...")
+   - Task description
+   - Tool descriptions (for agents with tools)
+   - Routing guidelines (for dual KB agents)
+   - Response format specifications
+   - Important notes and constraints
+
+2. **Tool Selection Guidance**: Dual KB agents have explicit routing rules:
+
+   ```
+   Use search_knowledgebase for:
+   - AML typology definitions
+   - Regulatory frameworks
+   - Historical patterns
+
+   Use get_web_search_grounded_response for:
+   - Recent cases
+   - Current events
+   - Entity checks
+   ```
+
+3. **Professional Language**: All prompts use AML/compliance terminology appropriate for financial crime detection
+
+### Files Created
+
+```
+src/fraud_detection/
+├── prompts.py   # All 7 agent instructions (295 lines)
+
+tests/fraud_detection/
+└── test_prompts_integration.py  # Integration tests (327 lines, 5 tests + 3 API tests)
+```
+
+### Next Steps (Phase 4)
 
 According to the plan, the next step is:
 
-**Step 3 / Phase 3: Agent Prompts**
+**Step 4-7 / Phase 4: Intake Agent**
 
-- Create `src/fraud_detection/prompts.py`
-- Define instructions for all agents:
-  - Intake Agent
-  - Planner Agent
-  - Typology Matcher Agent
-  - Pattern Analyzer Agent
-  - Entity Research Agent
-  - Reasoning Agent
-  - Report Agent
-- Include tool selection guidance for dual knowledge sources
+- Create `src/fraud_detection/agents/intake.py`
+- Implement Intake Agent that:
+  - Takes a CustomerReport as input
+  - Extracts ExtractedSignal objects
+  - Returns structured output
+- Use `output_type` for structured responses
+- Write tests with real customer reports
 
 ---
 
