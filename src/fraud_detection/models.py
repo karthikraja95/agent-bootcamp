@@ -147,6 +147,29 @@ class EntityCheckResult(BaseModel):
     sources: list[str] = Field(default_factory=list, description="List of source citations")
 
 
+class ReasoningOutput(BaseModel):
+    """Output from Reasoning Agent - synthesized analysis of all evidence."""
+
+    evidence_analysis: str = Field(
+        ..., description="Detailed reasoning narrative synthesizing all evidence"
+    )
+    incriminating_factors: list[str] = Field(
+        default_factory=list, description="Factors that suggest fraud or suspicious activity"
+    )
+    exculpatory_factors: list[str] = Field(
+        default_factory=list, description="Factors that suggest legitimate activity"
+    )
+    confidence_score: float = Field(
+        ..., ge=0.0, le=100.0, description="Confidence score (0-100) based on evidence strength"
+    )
+    verdict: Literal["LIKELY_FRAUD", "SUSPICIOUS", "LIKELY_LEGITIMATE"] = Field(
+        ..., description="Preliminary verdict based on evidence analysis"
+    )
+    verdict_reasoning: str = Field(
+        ..., description="Explanation of why this verdict was reached"
+    )
+
+
 class FraudAssessment(BaseModel):
     """Final fraud assessment report."""
 

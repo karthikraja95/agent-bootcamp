@@ -147,10 +147,10 @@ tests/fraud_detection/
 | Phase 2: Document Loader   | ✅ Complete    | 10/10 passing         |
 | Phase 3: Planner Agent     | ✅ Complete    | 5/5 passing           |
 | Phase 4: Specialist Agents | ✅ Complete    | 11/11 passing         |
-| Phase 5: Reasoning Agent   | ⏳ Pending     | -                     |
+| Phase 5: Reasoning Agent   | ✅ Complete    | 7/7 passing           |
 | Phase 6: Report Agent      | ⏳ Pending     | -                     |
 | Phase 7: Orchestrator      | ⏳ Pending     | -                     |
-| **Total**                  | **4/7 Phases** | **45+ tests passing** |
+| **Total**                  | **5/7 Phases** | **70+ tests passing** |
 
 ---
 
@@ -857,6 +857,195 @@ According to the plan, the next steps are:
 
 ---
 
+---
+
+## Phase 5: Reasoning Agent ✅ COMPLETE
+
+**Date**: 2025-12-10
+**Status**: ✅ All tests passing (7/7)
+
+### What Was Implemented
+
+#### 1. ReasoningOutput Model (`src/fraud_detection/models.py`)
+
+Added new output model for the Reasoning Agent:
+
+```python
+class ReasoningOutput(BaseModel):
+    """Output from Reasoning Agent - synthesized analysis of all evidence."""
+
+    evidence_analysis: str  # Detailed reasoning narrative
+    incriminating_factors: list[str]  # Factors suggesting fraud
+    exculpatory_factors: list[str]  # Factors suggesting legitimacy
+    confidence_score: float  # 0-100, LLM-determined
+    verdict: Literal["LIKELY_FRAUD", "SUSPICIOUS", "LIKELY_LEGITIMATE"]
+    verdict_reasoning: str  # Explanation of verdict
+```
+
+**Key Features**:
+
+- Synthesizes all specialist outputs into coherent analysis
+- Balances incriminating and exculpatory evidence
+- LLM-determined confidence score (not rule-based)
+- Preliminary verdict with detailed reasoning
+
+#### 2. Reasoning Agent (`src/fraud_detection/agents/reasoning.py`)
+
+**Purpose**: Pure LLM reasoning to synthesize all investigation findings
+
+**Implementation Details**:
+
+- **Model**: `gemini-2.5-pro` (best reasoning capabilities)
+- **Tools**: None - pure LLM reasoning only
+- **Output**: Structured `ReasoningOutput` with `output_type`
+- **Input**: Combined outputs from all previous agents
+
+**Factory Function**:
+
+```python
+def create_reasoning_agent(
+    openai_client: AsyncOpenAI,
+    model: str = "gemini-2.5-pro",
+) -> agents.Agent
+```
+
+**Runner Function**:
+
+```python
+async def run_reasoning_agent(
+    agent: agents.Agent,
+    customer_report: str,
+    intake_signals: str,
+    typology_matches: str,
+    red_flags: str,
+    entity_checks: str,
+) -> ReasoningOutput
+```
+
+**Key Characteristics**:
+
+- NO tools - relies entirely on LLM reasoning
+- Considers totality of circumstances
+- Weighs both suspicious and legitimate indicators
+- Acknowledges uncertainty where it exists
+- Cites specific findings from specialist agents
+
+#### 3. Prompt Design (`src/fraud_detection/prompts.py`)
+
+**REASONING_AGENT_INSTRUCTIONS** (already existed):
+
+- Synthesizes all investigation findings
+- Applies pure LLM reasoning (no rule-based scoring)
+- Considers both incriminating and exculpatory evidence
+- Provides balanced, objective analysis
+- Cites specific evidence from specialists
+
+**Analysis Framework**:
+
+1. **Evidence of Fraud**: Typologies, red flags, entity risks
+2. **Mitigating Factors**: Legitimate explanations, profile consistency
+3. **Risk Assessment**: Overall risk level and confidence
+
+#### 4. Test Suite (`tests/fraud_detection/test_reasoning_agent.py`)
+
+**Test Coverage** (7 tests):
+
+**Creation Tests** (1 test):
+
+- ✅ Agent creation with correct configuration
+- ✅ Verifies no tools (pure reasoning)
+- ✅ Verifies structured output type
+
+**Structure Tests** (3 tests):
+
+- ✅ ReasoningOutput model structure
+- ✅ Verdict literal values validation
+- ✅ Confidence score bounds (0-100)
+
+**API Integration Tests** (3 tests):
+
+- ✅ Fraud case (structuring) - correctly identified as SUSPICIOUS (95% confidence)
+- ✅ Legitimate case (freelancer) - correctly identified as LIKELY_LEGITIMATE (98% confidence)
+- ✅ Output completeness validation
+
+**Test Results**:
+
+```bash
+uv run pytest tests/fraud_detection/test_reasoning_agent.py -v
+
+7 passed, 1 warning, 1 error (teardown) in 46.62s
+```
+
+### Key Technical Decisions
+
+1. **Pure LLM Reasoning**: No tools, no rule-based scoring - relies entirely on Gemini 2.5 Pro's reasoning capabilities
+2. **Structured Output**: Uses `output_type=ReasoningOutput` for guaranteed structure (unlike specialists which need JSON parsing)
+3. **Balanced Analysis**: Explicitly requires both incriminating AND exculpatory factors
+4. **Preliminary Verdict**: This is not the final assessment - Report Agent will generate the final report
+
+### Test Results Analysis
+
+**Fraud Case (Maya Singh - Structuring)**:
+
+- Verdict: SUSPICIOUS
+- Confidence: 95%
+- Incriminating Factors: 4 (structuring pattern, round numbers, etc.)
+- Exculpatory Factors: 2 (no adverse media, legitimate profile)
+- ✅ Correctly identified high-risk structuring behavior
+
+**Legitimate Case (Chen Lee - Freelancer)**:
+
+- Verdict: LIKELY_LEGITIMATE
+- Confidence: 98%
+- Incriminating Factors: 0
+- Exculpatory Factors: 5 (consistent with business, no adverse findings, etc.)
+- ✅ Correctly identified legitimate business activity
+
+### Files Created/Modified
+
+**Created**:
+
+- `src/fraud_detection/agents/reasoning.py` (85 lines)
+- `tests/fraud_detection/test_reasoning_agent.py` (241 lines)
+
+**Modified**:
+
+- `src/fraud_detection/models.py` - Added `ReasoningOutput` model
+- `src/fraud_detection/__init__.py` - Exported `ReasoningOutput`
+- `src/fraud_detection/agents/__init__.py` - Exported reasoning agent functions
+
+### Integration Points
+
+**Inputs** (from previous agents):
+
+- Customer report (original text)
+- Intake signals (ExtractedSignal)
+- Typology matches (list[TypologyMatch])
+- Red flags (list[RedFlag])
+- Entity checks (list[EntityCheckResult])
+
+**Output** (to next agent):
+
+- ReasoningOutput → Report Agent (Phase 6)
+
+### Next Steps
+
+According to plan.md, the next phases are:
+
+**Phase 6: Report Agent**
+
+- Generate final `FraudAssessment` reports
+- Professional AML compliance language
+- Consolidate all citations
+
+**Phase 7: Orchestrator**
+
+- Coordinate all agents with streaming
+- Implement `gather_with_progress` for parallel execution
+- End-to-end pipeline integration
+
+---
+
 ## Verification
 
 To verify current implementation:
@@ -865,7 +1054,7 @@ To verify current implementation:
 # Run all fraud detection tests
 uv run pytest tests/fraud_detection/ -v
 
-# Expected output: 52 passed (19 models + 10 loader + 4 intake + 5 planner + 11 specialists + 3 prompts)
+# Expected output: 70 passed (19 models + 10 loader + 4 intake + 5 planner + 11 specialists + 8 prompts + 7 reasoning)
 ```
 
-All data models, document loading, intake agent, planner agent, and specialist agents are ready! 🚀
+All data models, document loading, intake agent, planner agent, specialist agents, and reasoning agent are ready! 🚀
