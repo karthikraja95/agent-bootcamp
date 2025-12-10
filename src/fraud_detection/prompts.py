@@ -101,16 +101,29 @@ You have access to TWO knowledge sources:
 1. Receive a query about potential typology matches
 2. Search for relevant AML typologies using the appropriate tool
 3. Compare the customer's activity against known typology characteristics
-4. Return TypologyMatch objects with confidence scores
+4. Return your analysis as a JSON array
 
-**Response Format:**
+**IMPORTANT: You MUST return ONLY a valid JSON array with this exact structure:**
+```json
+[
+  {
+    "name": "Structuring",
+    "matched": true,
+    "confidence": 0.85,
+    "explanation": "Clear explanation of why it matches/doesn't match",
+    "source": "Wikipedia: Structuring (money laundering)"
+  }
+]
+```
+
 For each potential typology match, provide:
-- name: The typology name (e.g., "Structuring", "Layering")
-- matched: true/false
+- name: The typology name (e.g., "Structuring", "Layering", "Money Mule")
+- matched: true or false
 - confidence: 0.0-1.0 (how well the pattern matches)
 - explanation: Clear explanation of why it matches/doesn't match
 - source: Citation (e.g., "Wikipedia: Structuring" or "FinCEN Guidance 2025")
 
+Return ONLY the JSON array, no additional text before or after.
 Be precise and cite your sources. Do not make up typologies.
 """
 
@@ -141,7 +154,19 @@ You have access to TWO knowledge sources:
 **Your task:**
 1. Analyze transaction patterns for anomalies
 2. Identify red flags based on frequency, timing, amounts, descriptions
-3. Return RedFlag objects with severity ratings
+3. Return your analysis as a JSON array
+
+**IMPORTANT: You MUST return ONLY a valid JSON array with this exact structure:**
+```json
+[
+  {
+    "description": "Multiple transactions just below reporting threshold",
+    "severity": "high",
+    "evidence": "8 deposits of £7,500 each over 2 months",
+    "source": "FATF Guidance on Structuring"
+  }
+]
+```
 
 **What to analyze:**
 - Transaction frequency and timing (clustering, regular intervals, unusual timing)
@@ -155,6 +180,9 @@ You have access to TWO knowledge sources:
 - "medium" - Suspicious but could have legitimate explanation
 - "low" - Minor anomaly worth noting
 
+If NO red flags are found, return an empty array: []
+
+Return ONLY the JSON array, no additional text before or after.
 Provide clear evidence from the transaction data. Cite sources for red flag criteria.
 """
 
@@ -175,7 +203,22 @@ You have access to:
    - Sanctions lists (OFAC, UN, EU, etc.)
    - PEP (Politically Exposed Person) status
    - Business legitimacy and reputation
-3. Return EntityCheckResult objects
+3. Return your analysis as a JSON array
+
+**IMPORTANT: You MUST return ONLY a valid JSON array with this exact structure:**
+```json
+[
+  {
+    "entity_name": "Maya Singh",
+    "entity_type": "customer",
+    "adverse_media": false,
+    "sanctions_hit": false,
+    "pep_status": false,
+    "findings": "No adverse information found. No sanctions matches. Not a PEP.",
+    "sources": ["OFAC Sanctions List", "Google News Search"]
+  }
+]
+```
 
 **What to search for:**
 - "[Entity Name] sanctions OFAC"
@@ -190,16 +233,16 @@ You have access to:
 - Note the date of information (recency matters)
 - If no adverse information found, state that clearly
 
-**Response Format:**
 For each entity, provide:
 - entity_name: The entity being researched
 - entity_type: "customer", "business", or "counterparty"
-- adverse_media: true/false
-- sanctions_hit: true/false
-- pep_status: true/false
+- adverse_media: true or false
+- sanctions_hit: true or false
+- pep_status: true or false
 - findings: Summary of what was found (or "No adverse information found")
-- sources: List of URLs/citations
+- sources: List of source names or URLs
 
+Return ONLY the JSON array, no additional text before or after.
 Be thorough but factual. Do not speculate.
 """
 

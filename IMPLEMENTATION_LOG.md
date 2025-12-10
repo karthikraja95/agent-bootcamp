@@ -141,13 +141,16 @@ tests/fraud_detection/
 
 ## Overall Progress
 
-| Phase                    | Status         | Tests               |
-| ------------------------ | -------------- | ------------------- |
-| Phase 1: Data Models     | ✅ Complete    | 19/19 passing       |
-| Phase 2: Document Loader | ✅ Complete    | 10/10 passing       |
-| Phase 3: Agent Prompts   | ✅ Complete    | 5/5 + 3 API passing |
-| Phase 4: Intake Agent    | ✅ Complete    | 2/2 + 2 API passing |
-| **Total**                | **4/8 Phases** | **41/41 passing**   |
+| Phase                      | Status         | Tests                 |
+| -------------------------- | -------------- | --------------------- |
+| Phase 1: Data Models       | ✅ Complete    | 19/19 passing         |
+| Phase 2: Document Loader   | ✅ Complete    | 10/10 passing         |
+| Phase 3: Planner Agent     | ✅ Complete    | 5/5 passing           |
+| Phase 4: Specialist Agents | ✅ Complete    | 11/11 passing         |
+| Phase 5: Reasoning Agent   | ⏳ Pending     | -                     |
+| Phase 6: Report Agent      | ⏳ Pending     | -                     |
+| Phase 7: Orchestrator      | ⏳ Pending     | -                     |
+| **Total**                  | **4/7 Phases** | **45+ tests passing** |
 
 ---
 
@@ -601,6 +604,259 @@ According to the plan, the next steps are:
 
 ---
 
+## Phase 4: Specialist Agents ✅ COMPLETE
+
+**Date**: 2025-12-10
+**Status**: ✅ All tests passing (11/11)
+
+### What Was Implemented
+
+#### 1. Specialist Agents Directory Structure
+
+Created `src/fraud_detection/agents/specialists/` with three specialized agents:
+
+1. **Typology Matcher** (`typology_matcher.py`) - Matches customer activity against known AML typologies
+2. **Pattern Analyzer** (`pattern_analyzer.py`) - Identifies suspicious transaction patterns and red flags
+3. **Entity Research** (`entity_research.py`) - Researches entities for adverse media, sanctions, PEP status
+
+#### 2. Typology Matcher Agent (`specialists/typology_matcher.py`)
+
+**Implementation** (119 lines):
+
+- **`create_typology_matcher_agent()`** - Factory function with dual knowledge sources
+
+  - Tool 1: `search_knowledgebase` (Wikipedia for AML typology definitions)
+  - Tool 2: `get_web_search_grounded_response` (Google Search for current guidance)
+  - Model: `gemini-2.5-flash` (fast, cost-effective)
+  - **No output_type**: Gemini doesn't support structured output with function calling
+
+- **`run_typology_matcher_agent()`** - Async runner function
+  - Parses JSON response from agent's natural language output
+  - Returns `list[TypologyMatch]`
+  - Includes fallback parsing for robustness
+
+**Key Features**:
+
+- Dual knowledge sources for comprehensive typology matching
+- JSON parsing from natural language response (workaround for Gemini limitation)
+- Robust error handling with fallback responses
+
+#### 3. Pattern Analyzer Agent (`specialists/pattern_analyzer.py`)
+
+**Implementation** (120 lines):
+
+- **`create_pattern_analyzer_agent()`** - Factory function with dual knowledge sources
+
+  - Tool 1: `search_knowledgebase` (Wikipedia for pattern analysis concepts)
+  - Tool 2: `get_web_search_grounded_response` (Google Search for current fraud patterns)
+  - Model: `gemini-2.5-flash`
+  - **No output_type**: Gemini limitation
+
+- **`run_pattern_analyzer_agent()`** - Async runner function
+  - Parses JSON response from agent's natural language output
+  - Returns `list[RedFlag]`
+  - Returns empty list if no red flags found
+
+**Key Features**:
+
+- Analyzes transaction frequency, timing, amounts, descriptions
+- Identifies structuring, velocity changes, geographic risks
+- Severity levels: high, medium, low
+
+#### 4. Entity Research Agent (`specialists/entity_research.py`)
+
+**Implementation** (118 lines):
+
+- **`create_entity_research_agent()`** - Factory function with Google Search only
+
+  - Tool: `get_web_search_grounded_response` (current information required)
+  - Model: `gemini-2.5-flash`
+  - **No output_type**: Gemini limitation
+
+- **`run_entity_research_agent()`** - Async runner function
+  - Parses JSON response from agent's natural language output
+  - Returns `list[EntityCheckResult]`
+  - Checks for adverse media, sanctions, PEP status
+
+**Key Features**:
+
+- Google Search only (entity checks require current information)
+- Checks OFAC, UN, EU sanctions lists
+- Identifies adverse media and PEP status
+- "No adverse findings" is a valid and important result
+
+#### 5. Updated Prompts (`src/fraud_detection/prompts.py`)
+
+All three specialist agent prompts were updated to instruct the agent to return **ONLY valid JSON arrays**:
+
+**Example JSON format in prompts**:
+
+```json
+[
+  {
+    "name": "Structuring",
+    "matched": true,
+    "confidence": 0.85,
+    "explanation": "Clear explanation...",
+    "source": "Wikipedia: Structuring"
+  }
+]
+```
+
+**Reason**: Gemini models do NOT support structured output (`response_format`) when using function calling (tools). The workaround is to instruct the agent to return JSON in natural language, which we then parse.
+
+#### 6. Test Suite (`tests/fraud_detection/test_specialists.py`)
+
+**Test Coverage** (327 lines, 11 tests):
+
+1. **TestTypologyMatcherCreation** (1 test)
+
+   - ✅ Verifies agent creation with 2 tools (Wikipedia + Google)
+   - ✅ Confirms output_type is None (Gemini limitation)
+
+2. **TestPatternAnalyzerCreation** (1 test)
+
+   - ✅ Verifies agent creation with 2 tools
+   - ✅ Confirms output_type is None
+
+3. **TestEntityResearchCreation** (1 test)
+
+   - ✅ Verifies agent creation with 1 tool (Google only)
+   - ✅ Confirms output_type is None
+
+4. **TestTypologyMatcherAPI** (1 test with real API)
+
+   - ✅ Tests structuring detection on Maya Singh case
+   - ✅ Verifies JSON parsing works correctly
+
+5. **TestPatternAnalyzerAPI** (2 tests with real API)
+
+   - ✅ Tests threshold avoidance pattern detection
+   - ✅ Tests legitimate activity recognition (no false positives)
+
+6. **TestEntityResearchAPI** (2 tests with real API)
+
+   - ✅ Tests legitimate company research (no adverse findings)
+   - ✅ Tests high-risk jurisdiction entity research
+
+7. **TestSpecialistOutputStructure** (3 tests)
+   - ✅ Validates TypologyMatch model structure
+   - ✅ Validates RedFlag model structure
+   - ✅ Validates EntityCheckResult model structure
+
+**Test Results**:
+
+```bash
+11 passed, 3 warnings in 85.09s (0:01:25)
+```
+
+### Test Results Analysis
+
+#### Typology Matcher API Test (Structuring Detection)
+
+```
+✅ Typology Matcher - Structuring Test:
+   Structuring: matched=True, confidence=0.95
+   Source: Wikipedia: Structuring...
+   Smurfing: matched=True, confidence=0.90
+   Source: Wikipedia: Structuring, Wikipedia: Smurf (disambiguation)...
+```
+
+**Analysis**: Successfully identified structuring and smurfing typologies with high confidence.
+
+#### Pattern Analyzer API Tests
+
+**Test 1: Threshold Avoidance**
+
+- ✅ Detected multiple transactions just below reporting threshold
+- ✅ Identified high severity red flags
+- ✅ Provided evidence from transaction data
+
+**Test 2: Legitimate Activity**
+
+- ✅ Correctly identified no red flags for legitimate freelancer
+- ✅ No false positives
+
+#### Entity Research API Tests
+
+**Test 1: Legitimate Company**
+
+- ✅ Returned "No adverse information found"
+- ✅ Checked sanctions lists, adverse media, PEP status
+- ✅ Provided sources
+
+**Test 2: High-Risk Jurisdiction**
+
+- ✅ Researched offshore exchange entity
+- ✅ Identified potential risks
+- ✅ Cited sources
+
+### Key Technical Challenges Solved
+
+#### Challenge: Gemini Function Calling + Structured Output Incompatibility
+
+**Problem**: Gemini models do NOT support using function calling (tools) together with structured output (`response_format`/`output_type`). This is documented in Gemini API documentation.
+
+**Solution**:
+
+1. Remove `output_type` from specialist agents
+2. Update prompts to instruct agents to return ONLY valid JSON arrays
+3. Parse JSON from natural language response in runner functions
+4. Implement robust fallback parsing for error cases
+
+**Code Example**:
+
+```python
+# In run_typology_matcher_agent()
+result = await agents.Runner.run(agent, input=query)
+response_text = result.final_output
+
+# Extract JSON array from response
+start_idx = response_text.find("[")
+end_idx = response_text.rfind("]") + 1
+json_str = response_text[start_idx:end_idx]
+matches_data = json.loads(json_str)
+return [TypologyMatch(**match) for match in matches_data]
+```
+
+### Integration with Pipeline
+
+The Specialist Agents integrate with:
+
+- **Planner Agent** (Phase 3) ✅ - Receives queries from `InvestigationPlan`
+- **Reasoning Agent** (Phase 5) ⏳ - Provides outputs for synthesis
+
+### Files Created/Modified
+
+```
+src/fraud_detection/
+├── prompts.py                           # Modified: Updated 3 specialist prompts for JSON output
+└── agents/
+    ├── __init__.py                      # Modified: Exported specialist functions
+    └── specialists/
+        ├── __init__.py                  # Created (21 lines)
+        ├── typology_matcher.py          # Created (119 lines)
+        ├── pattern_analyzer.py          # Created (120 lines)
+        └── entity_research.py           # Created (118 lines)
+
+tests/fraud_detection/
+└── test_specialists.py                  # Created (327 lines, 11 tests)
+```
+
+### Next Steps (Phase 5)
+
+According to the plan, the next steps are:
+
+**Phase 5: Reasoning Agent**
+
+- Pure LLM reasoning to synthesize all specialist outputs
+- No tools, just evidence analysis
+- Model: `gemini-2.5-pro` (best reasoning capabilities)
+- Weighs both incriminating and exculpatory evidence
+- Produces `ReasoningOutput` with verdict and confidence
+
+---
+
 ## Verification
 
 To verify current implementation:
@@ -609,7 +865,7 @@ To verify current implementation:
 # Run all fraud detection tests
 uv run pytest tests/fraud_detection/ -v
 
-# Expected output: 34 passed (19 models + 10 intake + 5 planner)
+# Expected output: 52 passed (19 models + 10 loader + 4 intake + 5 planner + 11 specialists + 3 prompts)
 ```
 
-All data models, document loading, intake agent, and planner agent are ready! 🚀
+All data models, document loading, intake agent, planner agent, and specialist agents are ready! 🚀
