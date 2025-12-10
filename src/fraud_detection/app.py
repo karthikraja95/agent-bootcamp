@@ -102,13 +102,18 @@ def format_final_report(assessment: FraudAssessment) -> str:
 {assessment.risk_summary}
 
 """
-    
-    if assessment.incriminating_factors:
-        md += "### 🔴 Incriminating Factors\n"
-        for factor in assessment.incriminating_factors:
-            md += f"- {factor}\n"
+
+    # Display red flags (incriminating evidence)
+    if assessment.red_flags:
+        md += "### 🔴 Red Flags Identified\n"
+        for flag in assessment.red_flags:
+            severity_emoji = {"high": "🔴", "medium": "🟡", "low": "🟢"}
+            emoji = severity_emoji.get(flag.severity, "⚪")
+            md += f"- {emoji} **{flag.severity.upper()}**: {flag.description}\n"
+            if flag.evidence:
+                md += f"  - Evidence: {flag.evidence}\n"
         md += "\n"
-    
+
     if assessment.mitigating_factors:
         md += "### 🟢 Mitigating Factors\n"
         for factor in assessment.mitigating_factors:
@@ -129,8 +134,13 @@ async def analyze_fraud_report_streaming(
 ):
     """Streaming orchestrator that yields intermediate results to UI."""
     global async_openai_client, async_knowledgebase, gemini_grounding
-    
+
+    print("\n" + "="*80)
+    print("🚀 Starting fraud detection analysis...")
+    print("="*80)
+
     # Create all agents
+    print("📦 Creating agents...")
     intake_agent = create_intake_agent(async_openai_client)
     planner_agent = create_planner_agent(async_openai_client)
     typology_matcher = create_typology_matcher_agent(
@@ -142,8 +152,10 @@ async def analyze_fraud_report_streaming(
     entity_research = create_entity_research_agent(async_openai_client, gemini_grounding)
     reasoning_agent = create_reasoning_agent(async_openai_client)
     report_agent = create_report_agent(async_openai_client)
-    
+    print("✅ All agents created\n")
+
     # 1. Intake - stream status
+    print("📥 STEP 1: Running Intake Agent...")
     gr_messages.append(ChatMessage(role="assistant", content="📥 **Intake Agent**: Parsing document and extracting signals..."))
     yield gr_messages
 
@@ -154,6 +166,7 @@ async def analyze_fraud_report_streaming(
             gr_messages.extend(new_msgs)
             yield gr_messages
     intake_result = intake_stream.final_output_as(IntakeOutput)
+    print(f"✅ Intake complete: {len(intake_result.signals)} signals extracted\n")
 
     gr_messages.append(ChatMessage(
         role="assistant",
@@ -162,18 +175,31 @@ async def analyze_fraud_report_streaming(
     yield gr_messages
 
     # 2. Planning - stream status
+    print("📋 STEP 2: Running Planner Agent...")
     gr_messages.append(ChatMessage(role="assistant", content="📋 **Planner Agent**: Creating investigation plan..."))
     yield gr_messages
 
     plan = await run_planner_agent(planner_agent, intake_result)
 
+    # Count total investigation steps across all query types
+    total_steps = (
+        len(plan.typology_queries) +
+        len(plan.pattern_queries) +
+        len(plan.entity_queries)
+    )
+    print(f"✅ Planning complete: {total_steps} investigation steps")
+    print(f"   - Typology queries: {len(plan.typology_queries)}")
+    print(f"   - Pattern queries: {len(plan.pattern_queries)}")
+    print(f"   - Entity queries: {len(plan.entity_queries)}\n")
+
     gr_messages.append(ChatMessage(
         role="assistant",
-        content=f"✅ Investigation plan created with {len(plan.investigation_steps)} steps"
+        content=f"✅ Investigation plan created with {total_steps} investigation steps"
     ))
     yield gr_messages
 
     # 3. Parallel specialist execution
+    print("🔍 STEP 3: Running Specialist Agents in parallel...")
     gr_messages.append(ChatMessage(
         role="assistant",
         content="🔍 **Specialist Agents**: Running parallel investigation...\n- Typology Matcher\n- Pattern Analyzer\n- Entity Research"
@@ -185,12 +211,21 @@ async def analyze_fraud_report_streaming(
     pattern_query = "\n".join(plan.pattern_queries) if plan.pattern_queries else "Identify suspicious patterns"
     entity_query = "\n".join(plan.entity_queries) if plan.entity_queries else "Research mentioned entities"
 
+    print("   🔎 Starting Typology Matcher...")
+    print("   🔎 Starting Pattern Analyzer...")
+    print("   🔎 Starting Entity Research...")
+
     # Run specialists in parallel
     typology_matches, red_flags, entity_checks = await asyncio.gather(
         run_typology_matcher_agent(typology_matcher, typology_query),
         run_pattern_analyzer_agent(pattern_analyzer, pattern_query),
         run_entity_research_agent(entity_research, entity_query),
     )
+
+    print(f"✅ Specialists complete:")
+    print(f"   - Typology matches: {len(typology_matches)}")
+    print(f"   - Red flags: {len(red_flags)}")
+    print(f"   - Entity checks: {len(entity_checks)}\n")
 
     gr_messages.append(ChatMessage(
         role="assistant",
@@ -199,6 +234,7 @@ async def analyze_fraud_report_streaming(
     yield gr_messages
 
     # 4. Reasoning - stream the LLM's reasoning process
+    print("🧠 STEP 4: Running Reasoning Agent...")
     gr_messages.append(ChatMessage(role="assistant", content="🧠 **Reasoning Agent**: Analyzing evidence..."))
     yield gr_messages
 
@@ -211,6 +247,8 @@ async def analyze_fraud_report_streaming(
         entity_checks=str(entity_checks),
     )
 
+    print(f"✅ Reasoning complete: {reasoning_result.verdict} ({reasoning_result.confidence_score}% confidence)\n")
+
     gr_messages.append(ChatMessage(
         role="assistant",
         content=f"✅ Reasoning complete: {reasoning_result.verdict} ({reasoning_result.confidence_score}% confidence)"
@@ -218,6 +256,7 @@ async def analyze_fraud_report_streaming(
     yield gr_messages
 
     # 5. Report generation
+    print("📝 STEP 5: Running Report Agent...")
     gr_messages.append(ChatMessage(role="assistant", content="📝 **Report Agent**: Generating final assessment..."))
     yield gr_messages
 
@@ -230,6 +269,12 @@ async def analyze_fraud_report_streaming(
         entity_checks=str(entity_checks),
         reasoning_output=reasoning_result,
     )
+
+    print(f"✅ Report generation complete!")
+    print(f"   Final verdict: {final_report.verdict}")
+    print(f"   Confidence: {final_report.confidence_score}%")
+    print("="*80)
+    print("🎉 Analysis complete!\n")
 
     # Final output
     gr_messages.append(ChatMessage(
