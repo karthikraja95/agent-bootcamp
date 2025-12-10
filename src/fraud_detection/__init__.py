@@ -13,6 +13,7 @@ from .models import (
     Transaction,
     TypologyMatch,
 )
+from .orchestrator import analyze_fraud_report, analyze_fraud_report_with_progress
 
 __all__ = [
     "CustomerProfile",
@@ -26,5 +27,7 @@ __all__ = [
     "RedFlag",
     "Transaction",
     "TypologyMatch",
+    "analyze_fraud_report",
+    "analyze_fraud_report_with_progress",
 ]
 
