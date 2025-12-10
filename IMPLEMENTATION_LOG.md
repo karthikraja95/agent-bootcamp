@@ -397,17 +397,207 @@ tests/fraud_detection/
 └── test_intake_agent.py         # Created (175 lines, 4 tests)
 ```
 
-### Next Steps (Phase 5)
+### Next Steps
 
 According to the plan, the next steps are:
 
-**Phase 5-7: Specialist Agents**
+**Phase 3: Planner Agent** ✅ COMPLETE (see below)
 
-- Create Planner Agent (generates investigation queries)
+---
+
+## Phase 3: Planner Agent ✅ COMPLETE
+
+**Date**: 2025-12-10
+**Status**: ✅ All tests passing (5/5)
+
+### What Was Implemented
+
+#### 1. InvestigationPlan Model (`src/fraud_detection/models.py`)
+
+Added new output model for the Planner Agent:
+
+```python
+class InvestigationPlan(BaseModel):
+    """Investigation plan created by Planner Agent."""
+
+    typology_queries: list[str]  # Queries for typology matching
+    pattern_queries: list[str]   # Queries for pattern analysis
+    entities_to_check: list[str] # List of entities to research
+    entity_queries: list[str]    # Specific entity research queries
+    priority_areas: list[str]    # Priority areas for investigation
+    initial_risk_assessment: Literal["low", "medium", "high"]
+    reasoning: str               # Reasoning for the investigation plan
+```
+
+**Key Features**:
+
+- Separates queries by specialist agent type (typology, pattern, entity)
+- Provides initial risk assessment to guide investigation
+- Includes reasoning to explain the plan
+
+#### 2. Planner Agent (`src/fraud_detection/agents/planner.py`)
+
+**Implementation** (70 lines):
+
+1. **`create_planner_agent()`** - Factory function to create the agent
+
+   - Uses `PLANNER_AGENT_INSTRUCTIONS` from prompts.py
+   - Structured output using `output_type=InvestigationPlan`
+   - Model: `gemini-2.5-pro` (better reasoning for planning)
+
+2. **`run_planner_agent()`** - Async function to run the agent
+   - Takes `IntakeOutput` as input
+   - Returns structured `InvestigationPlan`
+
+**Agent Characteristics**:
+
+- **No Tools**: Pure LLM reasoning, no external tools needed
+- **Input**: `IntakeOutput` from Intake Agent (signals + risk areas)
+- **Output**: Structured investigation plan with queries for specialists
+- **Model**: `gemini-2.5-pro` for superior planning and reasoning
+
+#### 3. Test Suite (`tests/fraud_detection/test_planner_agent.py`)
+
+**Test Coverage** (237 lines, 5 tests):
+
+1. **TestPlannerAgentCreation**
+
+   - ✅ `test_create_planner_agent` - Verifies agent creation
+
+2. **TestPlannerAgentStructure**
+
+   - ✅ `test_investigation_plan_structure` - Validates output model structure
+
+3. **TestPlannerAgentAPI** (with real API calls)
+   - ✅ `test_planner_legitimate_freelancer` - Tests on Chen Lee case
+   - ✅ `test_planner_fraud_structuring` - Tests on Maya Singh case
+   - ✅ `test_planner_output_completeness` - Validates plan completeness
+
+**Test Results**:
+
+```bash
+# All tests passed
+5 passed, 1 warning in ~40s
+```
+
+### Test Results Analysis
+
+#### Test 1: Legitimate Freelancer (Chen Lee)
+
+```
+✅ Investigation Plan for Chen Lee (Legitimate Freelancer):
+  Initial Risk Assessment: low
+
+  Typology Queries (1):
+    - Check if the flow of funds from international clients matches any
+      known money laundering typologies for freelancers
+
+  Pattern Queries (2):
+    - Analyze frequency, timing, and amounts of international wire transfers
+    - Verify scheduled BTC purchases demonstrate consistent savings pattern
+
+  Entities to Check (2):
+    - Chen Lee
+    - Lee Digital Art & Design
+
+  Priority Areas (3):
+    - Verification of customer identity and business legitimacy
+    - Confirmation that international fund flows are consistent with business
+    - Analysis of crypto purchase patterns
+```
+
+**Analysis**: Correctly identified as **low risk** with focus on verification rather than fraud detection.
+
+#### Test 2: Fraud Structuring (Maya Singh)
+
+```
+✅ Investigation Plan for Maya Singh (Fraud - Structuring):
+  Initial Risk Assessment: high
+
+  Typology Queries (3):
+    - Check if multiple cash deposits match 'structuring' or 'smurfing' typology
+    - Determine if identical transfers to DigitalGulf Exchange constitute structuring
+    - Analyze if overall flow matches classic 'layering' typology
+
+  Pattern Queries (3):
+    - Analyze velocity and timing of wire deposit followed by cash withdrawal
+    - Analyze rapid accumulation of crypto assets
+    - Investigate pattern of crypto purchases
+
+  Entities to Check (2):
+    - Maya Singh
+    - DigitalGulf Exchange
+
+  Priority Areas (4):
+    - Source of Funds for frequent cash deposits
+    - Structuring and Layering activities
+    - Risk assessment of offshore counterparty
+    - Purpose of large cash withdrawal and Dubai travel
+```
+
+**Analysis**: Correctly identified as **high risk** with specific focus on structuring and layering typologies.
+
+### Key Capabilities Demonstrated
+
+1. **Intelligent Risk Assessment**
+
+   - Low risk for legitimate freelancer (Chen Lee)
+   - High risk for fraud structuring case (Maya Singh)
+
+2. **Comprehensive Query Generation**
+
+   - Generates specific, actionable queries for specialist agents
+   - Separates queries by type (typology, pattern, entity)
+   - References specific data points from customer reports
+
+3. **Entity Identification**
+
+   - Automatically identifies entities requiring due diligence
+   - Generates targeted entity research queries
+
+4. **Priority Areas**
+   - Highlights key areas requiring investigation
+   - Provides clear focus for specialist agents
+
+### Integration with Pipeline
+
+The Planner Agent integrates seamlessly with:
+
+- **Intake Agent** (Phase 2) ✅ - Receives `IntakeOutput` as input
+- **Specialist Agents** (Phase 4) ⏳ - Provides queries for:
+  - Typology Matcher
+  - Pattern Analyzer
+  - Entity Research
+
+### Files Created/Modified
+
+```
+src/fraud_detection/
+├── models.py                    # Modified: Added InvestigationPlan model
+├── __init__.py                  # Modified: Exported InvestigationPlan
+└── agents/
+    ├── __init__.py              # Modified: Exported planner functions
+    └── planner.py               # Created (70 lines)
+
+tests/fraud_detection/
+└── test_planner_agent.py        # Created (237 lines, 5 tests)
+```
+
+### Next Steps (Phase 4)
+
+According to the plan, the next steps are:
+
+**Phase 4: Specialist Agents**
+
 - Create Typology Matcher Agent (dual KB: Wikipedia + Google)
 - Create Pattern Analyzer Agent (dual KB: Wikipedia + Google)
 - Create Entity Research Agent (Google Search only)
 - Implement parallel execution with `gather_with_progress`
+
+**Phase 5: Reasoning Agent**
+
+- Pure LLM reasoning to synthesize specialist outputs
+- No tools, just evidence analysis
 
 ---
 
@@ -419,7 +609,7 @@ To verify current implementation:
 # Run all fraud detection tests
 uv run pytest tests/fraud_detection/ -v
 
-# Expected output: 29 passed
+# Expected output: 34 passed (19 models + 10 intake + 5 planner)
 ```
 
-All data models and document loading are ready for the agent pipeline! 🚀
+All data models, document loading, intake agent, and planner agent are ready! 🚀

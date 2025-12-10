@@ -86,6 +86,34 @@ class ExtractedSignal(BaseModel):
     explanation: str = Field(..., description="Explanation of why this signal was extracted")
 
 
+class InvestigationPlan(BaseModel):
+    """Investigation plan created by Planner Agent."""
+
+    typology_queries: list[str] = Field(
+        default_factory=list,
+        description="Queries for typology matching (e.g., 'structuring money laundering definition')",
+    )
+    pattern_queries: list[str] = Field(
+        default_factory=list,
+        description="Queries for pattern analysis (e.g., 'AML red flags international wire transfers')",
+    )
+    entities_to_check: list[str] = Field(
+        default_factory=list,
+        description="List of entities to research (customer name, business name, counterparties)",
+    )
+    entity_queries: list[str] = Field(
+        default_factory=list,
+        description="Specific entity research queries (e.g., 'Chen Lee Vancouver sanctions')",
+    )
+    priority_areas: list[str] = Field(
+        default_factory=list, description="Priority areas for investigation"
+    )
+    initial_risk_assessment: Literal["low", "medium", "high"] = Field(
+        ..., description="Initial risk assessment based on intake signals"
+    )
+    reasoning: str = Field(..., description="Reasoning for the investigation plan")
+
+
 class TypologyMatch(BaseModel):
     """AML typology matching result from Typology Matcher Agent."""
 
